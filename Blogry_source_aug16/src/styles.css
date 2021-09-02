@@ -1,0 +1,462 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import url("assets/css/bootstrap.css"); */
+@import url("~bootstrap/dist/css/bootstrap.min.css");
+@import url("assets/css/animate.min.css");
+@import url("assets/css/font-awesome.min.css");
+@import url("assets/css/magnific-popup.css");
+@import url("assets/css/slick.css");
+@import url("assets/css/custom_modal.css");
+@import url("assets/css/jquery-nice-select.min.css");
+/* @import url('assets/css/style.css'); */
+
+/* SECTION BASED STYLE */
+@import url("assets/css/style/common.css");
+@import url("assets/css/style/header.css");
+@import url("assets/css/style/banner.css");
+@import url("assets/css/style/posts.css");
+/* @import url('assets/css/style/sidebar.css'); */
+/* @import url('assets/css/style/instagram.css'); */
+@import url("assets/css/style/imagesboxes.css");
+/* @import url('assets/css/style/postdetails.css'); */
+/* @import url('assets/css/style/about.css'); */
+@import url("assets/css/style/myaccount.css");
+/* @import url('assets/css/style/products.css'); */
+/* @import url('assets/css/style/shoppingcart.css'); */
+/* @import url('assets/css/style/errorpages.css'); */
+@import url("assets/css/style/photostories.css");
+/* @import url('assets/css/style/contact.css'); */
+/* @import url('assets/css/style/footer.css'); */
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #007bff;
+}
+.dropdown-item.disabled,
+.dropdown-item:disabled {
+  color: #6c757d;
+  background-color: transparent;
+}
+.is-invalid {
+  border: 1px solid crimson !important;
+}
+.is-invalid-text {
+  color: crimson;
+}
+.submitButton {
+  cursor: pointer;
+}
+.customButton {
+  /* position: absolute; */
+  /* right: 0; */
+  /* bottom: 0; */
+  height: 45px;
+  padding: 0 28px;
+  background-color: #000000;
+  color: #fff;
+  /* z-index: 2; */
+  font-family: "Roboto", serif;
+  font-weight: 500;
+  /* border-left: 5px solid #fff; */
+}
+.modal-body > div {
+  display: block !important;
+}
+
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+  animation: fa-spin 1s infinite steps(8);
+}
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+section.post-area {
+  min-height: 70vh !important;
+}
+
+.reply-link {
+  line-height: 1;
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  color: #000000;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  padding: 8px 25px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.reply-link:hover {
+  color: #fff;
+  border-color: #000000;
+  background-color: #000000;
+}
+.routerLink {
+  cursor: pointer;
+}
+.modal-content {
+  background: none;
+  border: 0;
+}
+.rounded-20 {
+  border-radius: 20px;
+}
+
+.rounded-50 {
+  border-radius: 50px;
+}
+
+.bg-black {
+  background-color: #000000;
+}
+.blogImage {
+  /* width: 200px; */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  cursor: pointer;
+}
+.blogPostTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.postExcerpt {
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 75px; */
+  display: -webkit-box;
+  height: 100px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 15px !important;
+}
+.pageTitle {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+.pageTitle .pageHeading {
+  font-size: 50px;
+}
+.postBookmark {
+  cursor: pointer;
+}
+ngb-toast {
+  position: fixed;
+  top: 25%;
+  z-index: 99999999999999;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.modal-open .modal {
+  z-index: 9991;
+}
+
+/* ONLY DASHBOARD CSS */
+.dashboard {
+  /* background-color: aliceblue; */
+  min-height: 100vh;
+}
+
+/* SideMenu */
+.miniSidebar {
+  position: fixed;
+  width: 60px;
+  height: 100%;
+  background-color: rgb(16, 16, 16);
+  color: #fff !important;
+  text-align: center;
+  font-size: 25px;
+  line-height: 1.7;
+}
+.miniSidebar img,
+.miniSidebar span,
+.miniSidebar a {
+  cursor: pointer;
+  color: #fff !important;
+}
+
+/* .miniSidebar a.navLink span {
+  font-size: 8px;
+} */
+.miniSidebar .dashTopLogo {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* width: 100%; */
+}
+.miniSidebar .dashMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+.miniSidebar .dashMenu .navLink {
+  display: block;
+}
+.miniSidebar .dashMenu .navLink.active {
+  background-color: #007bff;
+}
+.miniSidebar .dashSettings {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.mainDiv {
+  margin-left: 60px;
+}
+.mainDiv .card {
+  border-radius: 25px;
+  min-height: 180px;
+}
+
+.card2 {
+  background: rgb(255 78 215);
+  background: -webkit-linear-gradient(rgb(255 78 215), rgb(97 225 219));
+  background: -moz-linear-gradient(rgb(255 78 215), rgb(97 225 219));
+  background: linear-gradient(rgb(255 78 215), rgb(97 225 219));
+  border: 0;
+}
+.card3 {
+  background: #33dee1;
+  background: -webkit-linear-gradient(#33dee1, #eee762);
+  background: -moz-linear-gradient(#33dee1, #eee762);
+  background: linear-gradient(#33dee1, #eee762);
+  border: 0;
+}
+.card1 {
+  background: rgb(0 165 255);
+  background: -webkit-linear-gradient(rgb(0 165 255), rgb(71 192 171));
+  background: -moz-linear-gradient(rgb(0 165 255), rgb(71 192 171));
+  background: linear-gradient(rgb(0 165 255), rgb(71 192 171));
+  border: 0;
+}
+span.card-top {
+  display: block;
+  width: 100%;
+}
+span.card-icon {
+  float: right;
+}
+span.card-bottom {
+  position: absolute;
+  bottom: 18px;
+}
+span.card-number {
+  font-size: 40px;
+  text-shadow: 0px 0px 3px rgb(67, 67, 67);
+}
+.card-icon {
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 65px;
+  color: #333333;
+  padding: 10px 13px;
+  box-shadow: 0px 0px 37px -5.5px rgb(33, 33, 33);
+}
+.dashboardTable,
+.dashboardTable table {
+  width: 100%;
+}
+.dashboardTable tbody tr.mat-row {
+  min-height: 70px !important;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  padding: 5px;
+  /* box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%); */
+  box-shadow: 0 0px 3px rgb(0 0 0 / 16%), 0 1px 3px rgb(0 0 0 / 23%);
+  margin: 8px 0;
+  border-radius: 15px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.dashboardTable tbody tr.mat-row:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.dashboardTable tbody tr td {
+  border: 0 !important;
+}
+.dashboardTable thead {
+  display: none;
+}
+.dashTableImage {
+  width: 60px;
+  height: 60px;
+  padding-left: 0 !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  /* box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%); */
+  box-shadow: inset -3px 3px 6px rgb(0 0 0 / 16%),
+    inset 3px -3px 6px rgb(0 0 0 / 16%);
+}
+.dashTableText {
+  padding: 0 0 0 8px !important;
+}
+/* .dashCurrentPost img {
+  border-radius: 15px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+} */
+.currentPostBgImage {
+  min-height: 300px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+}
+.noPostTutorial {
+  font-size: 30px !important;
+  text-align: center;
+  padding: 10px;
+  padding-top: 30px;
+}
+.listItems {
+  padding-top: 10px;
+}
+.listItems .listItem {
+  padding: 10px;
+  margin: 5px;
+}
+.listItems .listItem.title {
+  text-align: center;
+  font-size: 18px;
+}
+.listItems .listItem.item {
+  border-radius: 10px;
+  /* box-shadow: 0 0 2px 0px #000000d9; */
+  background: #333333;
+  color: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+.listItems .listItem.item:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background: #ffffff;
+  color: #333333;
+}
+.listItems .listItem.item > span {
+  float: right;
+}
+
+.relatedPosts .card {
+  padding-bottom: 25px;
+}
+.relatedPosts .card,
+.relatedPosts .card .card-footer {
+  border: 0;
+}
+.relatedPosts .card .card-body {
+  padding: 0;
+  font-size: 18px;
+}
+.relatedPosts .card .card-body p {
+  display: -webkit-box;
+  height: 98px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0 !important;
+}
+.relatedPosts .card-img,
+.relatedPosts .card-img-top {
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+  height: 200px;
+  width: -webkit-fill-available;
+  cursor: pointer;
+}
+.relatedPosts .card .card-footer {
+  padding: 0;
+  font-size: 16px;
+}
+.relatedPosts .card .card-footer img {
+  max-height: 16px;
+  cursor: pointer;
+}
+.footIcon {
+  width: 25px;
+  height: 20px;
+  display: inline-flex;
+}
+
+.knowMore {
+  background: #000;
+  color: #ffffff;
+  width: fit-content;
+  position: absolute;
+  top: 160px;
+  right: 10px;
+}
+.knowMore:focus,
+.knowMore:hover {
+  background: #000;
+  color: #ffffff;
+  box-shadow: 0 0px 2px rgb(255 255 255 / 20%);
+}
+a.nav-link {
+  color: rgb(43, 43, 43);
+  font-weight: 400;
+}

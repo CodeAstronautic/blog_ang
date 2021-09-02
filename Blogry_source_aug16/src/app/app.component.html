@@ -1,0 +1,11 @@
+<div>
+  <app-header *ngIf="!workPlace"></app-header>
+  <router-outlet></router-outlet>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="timer" [fullScreen]="true"></ngx-spinner>
+<!-- <ng-http-loader spinner="sk-wave"></ng-http-loader> -->
+<!-- <div id="blogryLoader" *ngIf="myLoader">
+  <div class="Loadingcontainer">
+    <div class="myLoading"></div>
+  </div>
+</div> -->

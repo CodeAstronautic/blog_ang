@@ -1,0 +1,192 @@
+<section class="customBannerSection" *ngIf="showBanner">
+
+  <div class="container py-5">
+    <div class="row py-3">
+      <div class="col-12 col-md-6">
+        <div class="bannerText pb-5">
+          We provide you with a social platform where you can express your feelings / opinion / thoughts / experiences
+          in a form of blog
+        </div>
+        <button class="btn btn-dark btn-lg bg-black" (click)="scrollDown()">Start exploring</button>
+      </div>
+      <div class="col-12 col-md-6">
+        <img class="homeBannerImage" src="../../../../assets/img/homebanner.jpeg">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!--====== Post Area Start ======-->
+<section class="post-area no-sidebar" id="allPosts">
+
+  <!-- recent blogs -->
+  <div class="container" *ngIf="auth.isLoggedIn && recentBlogs && recentBlogs.length > 0">
+    <div class="row">
+      <div class="col pt-5">
+        <h3>Recent blogs</h3>
+      </div>
+    </div>
+    <div class="row relatedPosts pt-5">
+      <div class="col-md-4 mb-4" *ngFor="let post of recentBlogs; let i = index">
+        <div class="card h-100 homeCard">
+          <img class="bd-placeholder-img card-img-top" [src]="getPostImage(post.files)" routerLink="/blog/{{post._id}}"
+            style="cursor:pointer">
+          <button class="btn btn-sm knowMore" style="background-color: crimson;"
+            *ngIf="post.category && post.category.name">{{post.category.name}}</button>
+          <div class="card-body pt-2">
+            <h5 class="card-title blogPostTitle" routerLink="/blog/{{post._id}}" style="cursor:pointer">{{post.title}}
+            </h5>
+            <div class="card-text postExcerpt" [innerHtml]="blogService.stripHtml(post.content)"></div>
+          </div>
+          <div class="card-footer">
+            {{post.createdAt | date:"MMM d"}} | {{blogService.readingTime(post.content)}} min read <span
+              class="float-right"><i class="fas fa-thumbs-up"></i> {{post && post.like_count ? post.like_count.length :
+              0}} | <i class="fas fa-bookmark"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- suggested categories -->
+  <div class="container" *ngIf="auth.isLoggedIn && suggestedCategories && suggestedCategories.length > 0"
+    style="display: none;">
+    <div class="row">
+      <div class="col pt-5">
+        <h3>Suggested categories</h3>
+      </div>
+    </div>
+    <div class="row relatedPosts pt-5">
+      <!-- <div class="col-md-4 mb-4" *ngFor="let post of recentBlogs; let i = index">
+        <div class="card h-100 homeCard">
+          <img class="bd-placeholder-img card-img-top" [src]="getPostImage(post.files)" routerLink="/blog/{{post._id}}"
+            style="cursor:pointer">
+          <button class="btn btn-sm knowMore" style="background-color: crimson;"
+            *ngIf="post.category && post.category.name">{{post.category.name}}</button>
+          <div class="card-body pt-2">
+            <h5 class="card-title blogPostTitle" routerLink="/blog/{{post._id}}" style="cursor:pointer">{{post.title}}
+            </h5>
+            <div class="card-text postExcerpt" [innerHtml]="blogService.stripHtml(post.content)"></div>
+          </div>
+          <div class="card-footer">
+            {{post.createdAt | date:"MMM d"}} | {{blogService.readingTime(post.content)}} min read <span
+              class="float-right"><i class="fas fa-thumbs-up"></i> {{post && post.like_count ? post.like_count.length :
+              0}} | <i class="fas fa-bookmark"></i></span>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="image-boxes pt-4">
+        <div class="image-box categorySelectBox" *ngFor="let category of suggestedCategories; let i = index"
+          (click)="selectCategory(i, category.name)"
+          [style.background-color]="category.color_code || getRandomDifferent(colorCodes)">
+          <span class="selectedCategory" *ngIf="ifSelected(category.name)">
+            <svg class="svgIcon-use" width="21" height="21">
+              <path d="M5.5 7.854L3.379 9.975l5.82 5.82 8.675-8.675-2.121-2.121-6.554 6.553z" fill-rule="evenodd"
+                fill="#ffffff"></path>
+            </svg>
+          </span>
+          <a href="javascript:void(0);">{{category.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- popular blogs -->
+  <div class="container" *ngIf="auth.isLoggedIn && popularBlogs && popularBlogs.length > 0">
+    <div class="row">
+      <div class="col pt-5">
+        <h3>Popular Blogs</h3>
+      </div>
+    </div>
+    <div class="row relatedPosts pt-5">
+      <div class="col-md-4 mb-4" *ngFor="let post of popularBlogs; let i = index">
+        <div class="card h-100 homeCard">
+          <img class="bd-placeholder-img card-img-top" [src]="getPostImage(post.files)" routerLink="/blog/{{post._id}}"
+            style="cursor:pointer">
+          <button class="btn btn-sm knowMore" style="background-color: crimson;"
+            *ngIf="post.category && post.category.name">{{post.category.name}}</button>
+          <div class="card-body pt-2">
+            <h5 class="card-title blogPostTitle" routerLink="/blog/{{post._id}}" style="cursor:pointer">{{post.title}}
+            </h5>
+            <div class="card-text postExcerpt" [innerHtml]="blogService.stripHtml(post.content)"></div>
+          </div>
+          <div class="card-footer">
+            {{post.createdAt | date:"MMM d"}} | {{blogService.readingTime(post.content)}} min read <span
+              class="float-right"><i class="fas fa-thumbs-up"></i> {{post && post.like_count ? post.like_count.length :
+              0}} | <i class="fas fa-bookmark"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- suggested blogs -->
+  <div class="container" *ngIf="auth.isLoggedIn && suggestedBlogs && suggestedBlogs.length > 0">
+    <div class="row">
+      <div class="col pt-5">
+        <h3>Suggested Blogs</h3>
+      </div>
+    </div>
+    <div class="row relatedPosts pt-5">
+      <div class="col-md-4 mb-4" *ngFor="let post of suggestedBlogs; let i = index">
+        <div class="card h-100 homeCard">
+          <img class="bd-placeholder-img card-img-top" [src]="getPostImage(post.files)" routerLink="/blog/{{post._id}}"
+            style="cursor:pointer">
+          <button class="btn btn-sm knowMore" style="background-color: crimson;"
+            *ngIf="post.category && post.category.name">{{post.category.name}}</button>
+          <div class="card-body pt-2">
+            <h5 class="card-title blogPostTitle" routerLink="/blog/{{post._id}}" style="cursor:pointer">{{post.title}}
+            </h5>
+            <div class="card-text postExcerpt" [innerHtml]="blogService.stripHtml(post.content)"></div>
+          </div>
+          <div class="card-footer">
+            {{post.createdAt | date:"MMM d"}} | {{blogService.readingTime(post.content)}} min read <span
+              class="float-right"><i class="fas fa-thumbs-up"></i> {{post && post.like_count ? post.like_count.length :
+              0}} | <i class="fas fa-bookmark"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- all blog posts -->
+  <div class="container" *ngIf="allBlogs && allBlogs.length > 0" infinite-scroll (scrolled)="onScrollDown($event)">
+    <div class="row">
+      <div class="col pt-5">
+        <h3>{{auth.isLoggedIn ? 'Explore More' : 'Exploring'}}</h3>
+      </div>
+    </div>
+    <div class="row relatedPosts pt-5">
+      <div class="col-md-4 mb-4" *ngFor="let post of allBlogs; let i = index">
+        <div class="card h-100 homeCard">
+          <img class="bd-placeholder-img card-img-top" [src]="getPostImage(post.files)" routerLink="/blog/{{post._id}}"
+            style="cursor:pointer">
+          <button class="btn btn-sm knowMore" style="background-color: crimson;"
+            *ngIf="post.category && post.category.name">{{post.category.name}}</button>
+          <div class="card-body pt-2">
+            <h5 class="card-title blogPostTitle" routerLink="/blog/{{post._id}}" style="cursor:pointer">{{post.title}}
+            </h5>
+            <div class="card-text postExcerpt" [innerHtml]="blogService.stripHtml(post.content)"></div>
+          </div>
+          <div class="card-footer">
+            {{post.createdAt | date:"MMM d"}} | {{blogService.readingTime(post.content)}} min read <span
+              class="float-right"><i class="fas fa-thumbs-up"></i> {{post && post.like_count ? post.like_count.length :
+              0}} | <i class="fas fa-bookmark"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="noMoreBlogs">
+      <div class="col pt-3">
+        <h3>No More blogs for you at the moment.</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col pt-3">
+      </div>
+    </div>
+  </div>
+</section>
+<!--====== Post Area End ======-->

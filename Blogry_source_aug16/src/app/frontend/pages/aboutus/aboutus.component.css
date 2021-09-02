@@ -1,0 +1,39 @@
+.about-section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.about-text p {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: large;
+}
+
+.aboutSubtitle {
+  font-size: xx-large !important;
+}
+
+.about2 {
+  text-align: center;
+  background-color: #EDB803;
+  color: #2a2a2a;
+}
+
+.teamMembers .team-body {
+  padding: 0 1.25rem;
+}
+.team-body p {
+  font-size: small;
+}
+
+.teamLabel {
+  font-weight: 500;
+}
+.teamLabel span {
+  color: grey;
+}
+.whatIsBlogry {
+  max-width: 420px;
+  margin: auto;
+  text-align: justify;
+}

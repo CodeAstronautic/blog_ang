@@ -1,0 +1,202 @@
+
+/*======= Footer =======*/
+footer {
+  background-color: #000000;
+  color: #bebebe;
+}
+footer .footer-widgets-area {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  color: #bebebe;
+}
+
+footer .footer-widgets-area .widget {
+  margin-bottom: 50px;
+  color: #bebebe;
+}
+
+footer .footer-widgets-area .widget .widget-title {
+  font-size: 25px;
+  font-weight: 800;
+  margin-bottom: 40px;
+  line-height: 1.4;
+  color: #bebebe;
+}
+
+@media (max-width: 767px) {
+  footer .footer-widgets-area .widget .widget-title {
+      font-size: 20px;
+      margin-bottom: 30px;
+  }
+}
+
+footer .footer-widgets-area .widget.address-widget p {
+  margin-bottom: 20px;
+  color: #bebebe;
+}
+
+footer .footer-widgets-area .widget.nav-widget li {
+  font-weight: 500;
+  color: #bebebe;
+  font-size: 17px;
+}
+
+footer .footer-widgets-area .widget.nav-widget li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+footer .footer-widgets-area .widget.nav-widget li a {
+  color: #bebebe;
+}
+footer .footer-widgets-area .widget.nav-widget li a:hover {
+  padding-left: 8px;
+}
+
+footer .footer-widgets-area .widget.newsletter-widget {
+  text-align: center;
+  color: #bebebe;
+}
+
+@media (max-width: 991px) {
+  footer .footer-widgets-area .widget.newsletter-widget {
+      text-align: left;
+  }
+}
+
+footer .footer-widgets-area .widget.newsletter-widget p {
+  font-family: "Roboto Slab", serif;
+  font-weight: 500;
+  font-size: 16px;
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 991px) {
+  footer .footer-widgets-area .widget.newsletter-widget p {
+      padding-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  footer .footer-widgets-area .widget.newsletter-widget p {
+      font-size: 14px;
+  }
+}
+
+footer .footer-widgets-area .widget.newsletter-widget form {
+  position: relative;
+}
+
+footer .footer-widgets-area .widget.newsletter-widget form input {
+  padding-right: 120px;
+  background-color: #ffffff;
+}
+
+footer .footer-widgets-area .widget.newsletter-widget form button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  padding: 0 28px;
+  background-color: #000000;
+  color: #fff;
+  z-index: 2;
+  font-family: "Roboto Slab", serif;
+  font-weight: 500;
+  border-left: 5px solid #fff;
+}
+
+@media (max-width: 767px) {
+  footer .footer-widgets-area .widget.newsletter-widget form button {
+      position: relative;
+      height: 45px;
+      width: 100%;
+      border: none;
+  }
+}
+
+footer .footer-copyright-area {
+  padding: 25px 0;
+  /* border-top: 1px solid #e5e5e5; */
+  position: relative;
+  z-index: 1;
+  color: #bebebe;
+}
+
+@media (max-width: 991px) {
+  footer .footer-copyright-area {
+      text-align: center;
+      padding: 13px 0;
+  }
+}
+
+/* footer .footer-copyright-area::after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 0;
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  width: 1px;
+  height: 100%;
+  background: #e5e5e5;
+  content: "";
+  z-index: -1;
+} */
+
+@media (max-width: 991px) {
+  footer .footer-copyright-area::after {
+      display: none;
+  }
+}
+
+/* footer .footer-copyright-area .social-links ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+} */
+
+/* @media (max-width: 991px) {
+  footer .footer-copyright-area .social-links ul {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      margin-bottom: 30px;
+  }
+} */
+
+/* footer .footer-copyright-area .social-links ul li {
+  margin-right: 10px;
+} */
+
+/* footer .footer-copyright-area .social-links ul li.title {
+  margin-right: 20px;
+  color: #000000;
+  font-weight: 600;
+} */
+
+/* footer .footer-copyright-area .social-links ul li:last-child {
+  margin-right: 0;
+} */
+
+/* footer .footer-copyright-area .social-links ul a {
+  color: #3d3d3d;
+} */
+
+/* footer .footer-copyright-area .social-links ul a:hover {
+  color: #000000;
+} */
+
+footer .footer-copyright-area .copyright-text {
+  font-size: 14px;
+  color: #bebebe;
+}
+
+footer .footer-copyright-area .copyright-text span {
+  font-weight: 700;
+  color: #bebebe;
+}

@@ -1,0 +1,64 @@
+
+    <div class="container pt-4 pb-4">
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="row p-3">
+            <div style="max-width: 400px;">
+              <p style="font-size: 2.5rem;line-height: 1;font-weight: 300;">Google Ads</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 pt-3 pb-2 mb-3">
+          <div class="border-bottom text-right">
+            <div class="btn-group mb-3">
+              <button type="button" routerLink="/p/dashboard/google-ads/create" class="btn btn-sm btn-outline-primary">Request Promote</button>
+              <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Total Revenue</button> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <!-- <th scope="col">#</th> -->
+                  <th scope="col">Campaign</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Days</th>
+                  <th scope="col">Payment</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ads of myGoogleAds">
+                  <td>{{ads.campaignName}}</td>
+                  <td>&#8377; {{ads.total_amount}}</td>
+                  <td>{{ads.days}}</td>
+                  <td>
+                    <button *ngIf="!ads.is_paid" type="button" (click)="initRazorPay(ads.total_amount, 'Google Ads', ads._id)" class="btn btn-sm btn-success">Pay {{ads.total_amount}}</button>
+                  </td>
+                  <td>
+                    {{!ads.is_approved && !ads.is_paid ? 'Awaiting Payment' : !ads.is_approved && ads.is_paid ? 'Awaiting Approval' : 'Approved'}}
+                  </td>
+                  <td>{{ads.createdAt | date:"short"}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- <div class="col-12">
+          <nav class="float-right">
+            <ul class="pagination">
+              <li class="page-item active" aria-current="page">
+                <span class="page-link">1</span>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+            </ul>
+          </nav>
+        </div> -->
+      </div>
+
+    </div>

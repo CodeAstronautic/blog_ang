@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+      "target": "https://blogrybackendserver.glitch.me/",
+      "secure": false,
+      "logLevel": "debug"
+  }
+}

@@ -1,0 +1,108 @@
+
+/*======= About SCSS =======*/
+.about-section {
+  padding: 130px 0;
+}
+
+@media (max-width: 991px) {
+  .about-section {
+      padding: 100px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section {
+      padding: 80px 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .about-text {
+      margin-top: 50px;
+  }
+}
+
+.about-text .title {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 991px) {
+  .about-text .title {
+      font-size: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-text .title {
+      font-size: 30px;
+  }
+}
+
+.about-text .subtitle {
+  font-size: 32px;
+  font-weight: 800;
+  text-decoration: underline;
+  color: #000000;
+  font-family: "Roboto Slab", serif;
+  line-height: 1.5;
+  margin-bottom: 70px;
+}
+
+@media (max-width: 1199px) {
+  .about-text .subtitle {
+      margin-bottom: 40px;
+      font-size: 24px;
+  }
+}
+
+@media (max-width: 991px) {
+  .about-text .subtitle {
+      margin-bottom: 40px;
+      font-size: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-text .subtitle {
+      font-size: 16px;
+  }
+}
+
+.about-text .social-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+@media (max-width: 991px) {
+  .about-text .social-links {
+      margin-top: 40px;
+  }
+}
+
+.about-text .social-links li {
+  margin-right: 15px;
+}
+
+.about-text .social-links li span {
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+  margin-right: 15px;
+}
+
+@media (max-width: 767px) {
+  .about-text .social-links li span {
+      margin-right: 10px;
+  }
+}
+
+.about-text .social-links li a,
+.about-text .social-links li span {
+  color: #000000;
+}

@@ -1,0 +1,146 @@
+
+/*======= Contact =======*/
+.contact-section {
+    padding-top: 50px;
+    padding-bottom: 60px;
+    background-color: #F7F8FC;
+}
+
+@media (max-width: 991px) {
+    .contact-section {
+        padding-top: 80px;
+        padding-bottom: 90px;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-section {
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
+}
+
+.contact-maps {
+    padding-right: 25px;
+}
+
+@media (max-width: 991px) {
+    .contact-maps {
+        padding-right: 0;
+        padding-bottom: 50px;
+    }
+}
+
+.contact-maps iframe {
+    width: 100%;
+    height: 720px;
+    border: none;
+    frameborder: 0;
+}
+
+@media (max-width: 991px) {
+    .contact-maps iframe {
+        height: 580px;
+    }
+}
+
+.contact-text .title {
+    font-size: 24px;
+    line-height: 1.6;
+    margin-bottom: 60px;
+}
+
+@media (max-width: 1199px) {
+    .contact-text .title {
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+}
+
+.contact-text .infomations .title {
+    margin-bottom: 15px;
+}
+
+.contact-text .infomations p {
+    color: #1d1d1d;
+    font-size: 16px;
+}
+
+.contact-text .infomations p span {
+    font-weight: 700;
+    margin-left: 20px;
+}
+
+.contact-form {
+    margin-top: 50px;
+}
+
+.contact-form form .row {
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.contact-form form .row > .col,
+.contact-form form .row > [class*="col-"] {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.contact-form form input,
+.contact-form form textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #878787;
+    padding-left: 0;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.contact-form form ::-webkit-input-placeholder {
+    font-size: 13px;
+    color: #555555;
+}
+
+.contact-form form ::-moz-placeholder {
+    font-size: 13px;
+    color: #555555;
+}
+
+.contact-form form :-ms-input-placeholder {
+    font-size: 13px;
+    color: #555555;
+}
+
+.contact-form form ::-ms-input-placeholder {
+    font-size: 13px;
+    color: #555555;
+}
+
+.contact-form form ::placeholder {
+    font-size: 13px;
+    color: #555555;
+}
+
+.contact-form form textarea {
+    height: 100px;
+}
+
+.contact-form form button {
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #000000;
+    color: #fff;
+    line-height: 1;
+    text-transform: uppercase;
+    padding: 15px 50px;
+    border-radius: 23px;
+    border: 1px solid #000000;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+
+.contact-form form button:hover {
+    background-color: #fff;
+    color: #000000;
+}

@@ -1,0 +1,22 @@
+export interface SimpleAds {
+  _id?: string,
+  campaignName: string,
+  advertisement_type: boolean,
+  title: string,
+  image: string,
+  blog: string,
+  user_id: string,
+  tags: any[],
+  category: string,
+  amount: number,
+  total_amount: number,
+  is_paid?: boolean,
+  payment_id?: string,
+  is_start?: boolean,
+  is_end?: boolean,
+  start_date?: Date,
+  end_date?: Date,
+  disable?: boolean,
+  is_approved?: boolean,
+  createdAt: string
+}

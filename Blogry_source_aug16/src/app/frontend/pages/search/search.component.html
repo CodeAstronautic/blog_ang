@@ -1,0 +1,47 @@
+<!--====== Post Area Start ======-->
+<section class="post-area no-sidebar" id="postWarpperLoaded">
+  <div class="container-fluid">
+    <div class="post-area-inner">
+      <!-- Entry Post -->
+      <h4 class="checkout-title mb-3 mt-3" *ngIf="totalResults">Your search results</h4>
+      <div class="entry-posts two-column masonary-posts row" *ngIf="totalResults">
+        <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let post of totalResults; let ind = index" id="post_{{ind+1}}">
+          <div class="entry-post">
+            <div class="entry-thumbnail" *ngIf="post.files">
+              <img [src]="apiUrl+post.files" [alt]="post.title">
+            </div>
+            <div class="entry-content">
+              <h4 class="title">
+                <a routerLink="/blog/{{post._id}}">
+                  {{post.title}}
+                </a>
+              </h4>
+              <ul class="post-meta">
+                <li class="date">
+                  <a href="#">{{post.createdAt | date:'mediumDate'}}</a>
+                </li>
+                <li class="date">
+                  in {{post.category}}
+                </li>
+                <li class="categories" *ngIf="post.tag && post.tag.length > 0">
+                  <a *ngFor="let itag of post.tag"> {{itag}}</a>
+                </li>
+              </ul>
+              <!-- <p>{{post.summary}}</p> -->
+              <a routerLink="/blog/{{post._id}}" class="read-more">
+                Read More <i class="fas fa-long-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12" *ngIf="showLoadMoreButton">
+          <div class="text-center">
+            <a (click)="loadMore()" class="load-more-btn">Load More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--====== Post Area End ======-->

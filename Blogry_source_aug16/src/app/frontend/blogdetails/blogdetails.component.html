@@ -1,0 +1,275 @@
+<!--====== Post Details Start ======-->
+<section class="post-details-area" *ngIf="currentPost">
+  <div class="container container-1000">
+    <div class="post-details">
+      <div class="entry-header">
+        <h2 class="title">{{currentPost.title}}</h2>
+      </div>
+      <div class="post-meta row no-gutters">
+        <div class="col-sm-12 col-md-6">{{currentPost.createdAt | date:'medium'}}</div>
+        <div class="d-flex col-sm-12 col-md-6 pb-4 align-self-end justify-content-end">
+          <div class="d-inline postShare">
+            <button class="btn btn-sm btn-black" (click)="openModal(sharing)"> <i class="fas fa-share"></i> Share
+            </button>
+          </div>
+          <span class="saveBlogIcon">
+            <img (click)="savePost()" *ngIf="!currentSaved" src="../../../assets/img/defaults/save.png">
+            <img *ngIf="currentSaved" src="../../../assets/img/defaults/saved.png">
+          </span>
+        </div>
+      </div>
+      <div class="entry-media text-center" *ngIf="currentPost.files">
+        <img [src]="apiUrl+'images/blogs/'+currentPost.files" alt="currentPost.title">
+      </div>
+      <div class="entry-content mb-5" [innerHTML]="currentPost.content">
+      </div>
+
+      <div class="row no-gutters likeComment">
+        <img id="commentIcon" (click)="openComments(commentModal)" src="../../../assets/img/defaults/comment.png">
+        <span>
+          <img id="likeIcon" *ngIf="!currentLiked" (click)="likePost()" src="../../../assets/img/defaults/like.png">
+          <img id="likeIcon" *ngIf="currentLiked" (click)="likeRemove()" src="../../../assets/img/defaults/liked.png">
+          <span class="badge rounded-pill bg-primary text-white"
+            *ngIf="currentPost.like_count && currentPost.like_count.length > 0">{{currentPost.like_count.length}}</span>
+        </span>
+      </div>
+
+      <hr />
+      <!-- footer -->
+      <div class="entry-footer">
+        <!-- <div class="post-tags" *ngIf="currentPost.tag && currentPost.tag.length > 0">
+          <span>Tags:</span>
+          <a href="#" *ngFor="let tag of currentPost.tag">{{tag}} </a>
+        </div> -->
+        <div class="post-author" *ngIf="currentPost.user">
+          <div class="author-img" *ngIf="currentPost.user.avatar">
+            <img [src]="apiUrl+'images/auth/'+currentPost.user.avatar" [alt]="currentPost.user.name">
+          </div>
+          <h5>{{currentPost.user.name}}</h5>
+          <p>{{currentPost.user.bio}}</p>
+        </div>
+      </div>
+
+      <!-- next previous -->
+      <!-- <div class="post-nav" *ngIf="currentPost.previousBlog || currentPost.nextBlog">
+        <div class="prev-post">
+          <a *ngIf="currentPost.previousBlog" routerLink="/blog/{{currentPost.previousBlog._id}}"><i class="far fa-angle-left"></i></a>
+          <span *ngIf="currentPost.previousBlog" class="title">Previous Post</span>
+        </div>
+        <div class="next-post float-right">
+          <span *ngIf="currentPost.nextBlog" class="title">Next Post</span>
+          <a *ngIf="currentPost.nextBlog" routerLink="/blog/{{currentPost.nextBlog._id}}"><i class="far fa-angle-right"></i></a>
+        </div>
+      </div> -->
+    </div>
+    <!-- <div class="comment-template mt-3">
+      <h5 class="template-title">
+        <span class="reply-link" *ngIf="currentPost.comment && currentPost.comment.length > 0; else noComments"><span
+            class="numberCircle">{{currentPost.comment.length}}</span>
+          Comments</span>
+        <ng-template #noComments>
+          <span class="reply-link">No Comments</span>
+        </ng-template>
+        <span class="reply-link" [ngClass]="{'likedSaved': currentLiked}" (click)="likePost()"><span
+            class="numberCircle">{{currentPost.like_count.length}}</span> Likes</span>
+        <span class="reply-link" [ngClass]="{'likedSaved': currentSaved}" (click)="savePost()"><span
+            class="numberCircle">{{currentPost.save_count.length}}</span> Saves</span>
+      </h5>
+
+      <ul class="comment-list" *ngIf="currentPost.comment && currentPost.comment.length > 0">
+
+        <li *ngFor="let comment of currentPost.comment">
+          <div class="comment-body">
+            <div class="comment-author" *ngIf="comment.user_id.avatar">
+              <img [src]="apiUrl+comment.user_id.avatar" [alt]="comment.user_id.name">
+            </div>
+            <div class="comment-content">
+              <h6 class="comment-author" *ngIf="comment.user_id.name">{{comment.user_id.name | titlecase}}</h6>
+              <p>{{comment.content}}</p>
+              <div class="comment-footer">
+                <span class="date">{{comment.createdAt | date:'medium'}}</span>
+                <span (click)="openComments(commentForm, comment._id ?? '')" class="reply-link">Reply</span>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+      <button class="customButton" (click)="openComments(commentForm, '')">
+        Add comment
+      </button>
+
+    </div> -->
+  </div>
+</section>
+<!--====== Post Details End ======-->
+
+
+<!-- Advertisements as related posts -->
+<section *ngIf="advertisements && advertisements.length > 0">
+  <div class="container container-1000">
+    <div class="row justify-content-center mb-4">
+      <div class="col-12">
+        <h2>MORE FROM BLOGRY</h2>
+      </div>
+    </div>
+    <carousel *ngIf="advertisements && advertisements.length > 2; else lessAds" class="row relatedPosts"
+      [cellsToShow]="3" [cellsToScroll]="1" [height]="350" [arrowsOutside]=true [loop]=true [autoplay]=true>
+      <div class="col-md-4 mb-4 carousel-cell" *ngFor="let post of advertisements; let i = index">
+        <div class="card h-100">
+          <img class="bd-placeholder-img card-img-top" [src]="post.image ? imageUrl+post.image : defaultBlogImage"
+            (click)="adOnclick(post._id, currentPost._id)" style="cursor:pointer">
+          <button class="btn btn-sm knowMore" (click)="adOnclick(post._id, currentPost._id)" style="cursor:pointer">Know
+            More</button>
+          <div class="card-body">
+            <p class="card-text" (click)="adOnclick(post._id, currentPost._id)" style="cursor:pointer">{{post.title}}
+            </p>
+          </div>
+          <!-- <div class="card-footer bg-transparent">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  {{post.createdAt | date:"MMM d"}}
+                </div>
+                <span class="text-muted">
+                  <span class="footIcon recentLike">
+                    <img src="../../../assets/img/defaults/like.png"></span><span class="footText">
+                    {{post.like_count.length}} | </span><span class="footIcon recentSave"><img
+                      src="../../../assets/img/defaults/save.png"></span>
+                </span>
+              </div>
+            </div> -->
+        </div>
+      </div>
+    </carousel>
+    <ng-template #lessAds>
+      <div class="row relatedPosts">
+        <div class="col-md-4 mb-4" *ngFor="let post of advertisements; let i = index">
+          <div class="card h-100">
+            <img class="bd-placeholder-img card-img-top" [src]="post.image ? imageUrl+post.image : defaultBlogImage"
+              (click)="adOnclick(post._id, currentPost._id)" style="cursor:pointer">
+            <button class="btn btn-sm knowMore" (click)="adOnclick(post._id, currentPost._id)"
+              style="cursor:pointer">Know More</button>
+            <div class="card-body">
+              <p class="card-text" (click)="adOnclick(post._id, currentPost._id)" style="cursor:pointer">{{post.title}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- <div class="row relatedPosts">
+    </div> -->
+  </div>
+</section>
+
+<ng-template #commentModal let-modal>
+  <div class="blogryModal modal-body">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <img src="../../../assets/img/defaults/close.png">
+    </button>
+    <div class="row">
+      <h3 class="text-center mb-3" style="font-weight: 300;"> {{currentPost && currentPost.comment ?
+        currentPost.comment.length : 0}} Comments </h3>
+    </div>
+    <div class="row d-flex commentForm" *ngIf="auth.loginStatus">
+      <span class="textarea commentTextarea" #myComment role="textbox" contenteditable id="currentComment"></span>
+      <button class="btn btn-black commentButton" type="button" (click)="commentSubmit(myComment.innerHTML)">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+    <div class="row" *ngIf="!auth.loginStatus">
+      <h3 class="text-center mb-3" style="font-weight: 300;"> <a class="p-2 btn btn-dark btn-lg rounded-50 bg-black"
+          #loginButton id="loginButton" style="min-width: 100px;"
+          (click)="globalService.toggle.next(true)"><small><b>Log-in to comment</b></small></a> </h3>
+    </div>
+    <div class="blogryModalBody">
+
+      <div class="row">
+        <div class="col-md-12 blogComments">
+
+          <ng-container *ngIf="currentPost && currentPost.comment && currentPost.comment.length > 0">
+            <div class="media blogComment" *ngFor="let comment of currentPost.comment">
+              <!-- http://localhost:3000/images/auth/avatar1623832058671.jpg -->
+              <img class="mr-3 rounded-circle"
+                [src]="comment.user && comment.user.avatar ? userImageUrl+comment.user.avatar : defaultUserImage" />
+              <div class="media-body">
+                <div class="row">
+                  <div class="col-12 d-flex">
+                    <h5>{{comment.user && comment.user.name ? comment.user.name : 'Anonymous'}} </h5>
+                    <span> - {{comment.createdAt | date:"MMM d, y, h:mm a"}}</span>
+                  </div>
+                </div>
+                <div [innerHtml]="comment.content"></div>
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="media blogComment"
+            *ngIf="currentPost && (!currentPost.comment || currentPost.comment.length == 0)">
+            <div class="media-body">
+              <div class="row">
+                <div class="col-12">
+                  <h5>No Comments Found, Be the first to comment .. </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #sharing let-modal>
+  <div class="modal-body blogryModal" style="min-width: 250px;">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="row">
+      <h3 class="text-center mb-3" style="font-weight: 300;"> Shares {{currentPost.share_count ? currentPost.share_count
+        : 0}} </h3>
+    </div>
+    <div class="blogryModalBody userInterestsBody">
+      <div class="row p-3">
+        <div class="col">
+          <button class="btn btn-primary btn-block" (click)="facebookShare()"
+            style="background-color:#4b69b1;border-color: #4b69b1;"> <i class="fab fa-facebook-f"></i>
+            Facebook </button>
+          <button class="btn btn-primary btn-block" (click)="twitterShare()"
+            style="background-color:#37b1e2;border-color: #37b1e2;"> <i class="fab fa-twitter"></i> Twitter
+          </button>
+          <button class="btn btn-primary btn-block" (click)="whatsAppShare()"
+            style="background-color:#11BB19;border-color: #11BB19;"> <i class="fab fa-whatsapp"></i> WhatsApp
+          </button>
+          <button class="btn btn-primary btn-block" (click)="linkedinShare()"
+            style="background-color:#0678b6;border-color: #0678b6;"> <i class="fab fa-linkedin"></i> LinkedIn
+          </button>
+          <button class="btn btn-primary btn-block" (click)="copyLink()"
+            style="background-color:#000000;border-color: #000000;"> <i class="fas fa-link"></i> Copy Link
+          </button>
+          <button class="btn btn-primary btn-block" (click)="mailMe(currentPost.title)"> <i class="fas fa-envelope"></i>
+            Mail </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ngb-toast *ngIf="toastShow" header="" [delay]="5000" (hide)="toastShow=false" class="bg-success text-light">
+  {{toastMessage}}
+</ngb-toast>
+
+<!-- <ng-template> -->
+<div class="myPopUp" id="myPopUp" #myPopUp>
+  <!-- <div class="popup-overlay" #popupOverlay></div> -->
+  <div class="main-popup" #mainPopup>
+    <div class="popup-content">
+      <span class="close-btn" (click)="closeAdPopup()">&times;</span>
+      <div #popupContent>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </ng-template> -->

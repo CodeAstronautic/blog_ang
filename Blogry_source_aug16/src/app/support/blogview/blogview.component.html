@@ -1,0 +1,19 @@
+<!--====== Post Details Start ======-->
+<section class="post-details-area mt-5 pt-4 mb-5 pb-3" *ngIf="currentPost">
+    <div class="container container-1000">
+        <div class="post-details">
+            <div class="entry-header">
+                <h2 class="title">{{currentPost.title}}</h2>
+            </div>
+            <div class="post-meta row no-gutters">
+                <div class="col-sm-12 col-md-6">{{currentPost.createdAt | date:'medium'}}</div>
+            </div>
+            <div class="entry-media text-center" *ngIf="currentPost.files">
+                <img [src]="apiUrl+'images/blogs/'+currentPost.files" [alt]="currentPost.title">
+            </div>
+            <div class="entry-content mb-5" [innerHTML]="currentPost.content">
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== Post Details End ======-->

@@ -1,0 +1,206 @@
+
+    <div class="container pt-4 pb-4">
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="row p-3">
+            <div style="max-width: 400px;">
+              <p style="font-size: 2.5rem;line-height: 1;font-weight: 300;">Create Google Ad</p>
+            </div>
+          </div>
+        </div>
+        <form class="col-12" [formGroup]="googleAdForm" (ngSubmit)="formSubmit()">
+
+          <div class="form-group row">
+            <label for="campaignName" class="col-sm-2 col-form-label">Campaign Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" formControlName="campaignName" id="campaignName">
+            </div>
+          </div>
+
+          <div class="form-group row" *ngIf="myBlogList && myBlogList.length > 0">
+            <label for="blog" class="col-sm-2 col-form-label">Blog Post</label>
+            <div class="col-sm-10">
+              <select class="form-control" formControlName="blog" id="blog">
+                <option value='' selected disabled>Select</option>
+                <option [value]=post._id *ngFor="let post of myBlogList">{{post.title}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-12 col-form-label"><strong>Headings / Titles</strong></label>
+          </div>
+          <div class="form-group row">
+            <label for="heading1" class="col-sm-2 col-form-label">Heading 1</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" formControlName="heading1" id="heading1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="heading2" class="col-sm-2 col-form-label">Heading 2</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" formControlName="heading2" id="heading2">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="heading3" class="col-sm-2 col-form-label">Heading 3</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" formControlName="heading3" id="heading3">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-12 col-form-label"><strong>Images</strong></label>
+          </div>
+          <div class="form-group row" *ngIf="googleAdForm.controls.image1.value">
+            <label for="image2" class="col-sm-2 col-form-label">Image 1</label>
+            <div class="col-sm-10">
+              <img [src]="apiUrl+'images/blogs/'+googleAdForm.controls.image1.value" height="150" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="image2" class="col-sm-2 col-form-label">Image 2</label>
+            <div class="col-sm-10">
+              <input type="file" (change)="onFileChange2($event)" class="form-control" formControlName="image2"
+                id="image2">
+              <button class="btn btn-danger" (click)="removeFile2()" *ngIf="selectedImage2Preview"><i
+                  class="fas fa-times"></i> Remove</button>
+              <img *ngIf="selectedImage2Preview" [src]="selectedImage2Preview" height="150" />
+            </div>
+          </div>
+
+          <!-- <div class="form-group row">
+            <label for="image3" class="col-sm-2 col-form-label">Image 3</label>
+            <div class="col-sm-10">
+              <input type="file" (change)="onFileChange3($event)" class="form-control" formControlName="image3"
+                id="image3">
+              <button class="btn btn-danger" (click)="removeFile3()" *ngIf="selectedImage3Preview"><i
+                  class="fas fa-times"></i> Remove</button>
+              <img *ngIf="selectedImage3Preview" [src]="selectedImage3Preview" height="150" />
+            </div>
+          </div> -->
+
+          <div class="form-group row">
+            <label class="col-12 col-form-label"><strong>Description's</strong></label>
+          </div>
+          <div class="form-group row">
+            <label for="description1" class="col-sm-2 col-form-label">Description 1</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="3" formControlName="description1" id="description1"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="description2" class="col-sm-2 col-form-label">Description 2</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="3" formControlName="description2" id="description2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="description3" class="col-sm-2 col-form-label">Description 3</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="3" formControlName="description3" id="description3"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-12 col-form-label"><strong>Details</strong></label>
+          </div>
+          <div class="form-group row">
+            <label for="tags" class="col-sm-2 col-form-label">Tags / Keywords</label>
+            <div class="col-sm-10">
+              <ngx-input-tag formControlName="tags"></ngx-input-tag>
+            </div>
+          </div>
+
+          <div class="form-group row" *ngIf="categoryList && categoryList.length > 0">
+            <label for="category" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-10">
+              <select class="form-control" formControlName="category" id="category">
+                <option value='' selected disabled>Select</option>
+                <option [value]=cat._id *ngFor="let cat of categoryList">{{cat.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="amount_per_day" class="col-sm-2 col-form-label">Amount Per day</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" formControlName="amount_per_day" id="amount_per_day" min="129">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="days" class="col-sm-2 col-form-label">Days</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" formControlName="days" id="days" min="1">
+              <small class="form-text text-muted">how many days you want your ad to be run</small>
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="totalCalculatedAmount > 0">
+            <label for="calculated_amount" class="col-sm-2 col-form-label">Total amount</label>
+            <div class="col-sm-10">
+              &#8377; {{totalCalculatedAmount}}
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-12 col-form-label"><strong>Address</strong></label>
+          </div>
+          <div class="form-group row">
+            <label for="street1" class="col-sm-2 col-form-label">Street 1</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" formControlName="street1" id="street1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="street2" class="col-sm-2 col-form-label">Street 2 (optional)</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" formControlName="street2" id="street2">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="country" class="col-sm-2 col-form-label">Country</label>
+            <div class="col-sm-10">
+              <select class="form-control" formControlName="country">
+                <option value="">Select country</option>
+                <option [value]="country.id" *ngFor="let country of countries">{{country.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="states && states.length > 0">
+            <label for="state" class="col-sm-2 col-form-label">State</label>
+            <div class="col-sm-10">
+              <select class="form-control" formControlName="state">
+                <option value="">Select state</option>
+                <option [value]="state.id" *ngFor="let state of states">{{state.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="cities && cities.length > 0">
+            <label for="city" class="col-sm-2 col-form-label">City</label>
+            <div class="col-sm-10">
+              <select class="form-control" formControlName="city">
+                <option value="">Select city</option>
+                <option [value]="city.id" *ngFor="let city of cities">{{city.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="pincode" class="col-sm-2 col-form-label">Pin-Code</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" formControlName="pincode" id="pincode" minlength="5" maxlength="10">
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>

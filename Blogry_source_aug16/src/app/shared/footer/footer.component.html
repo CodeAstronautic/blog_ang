@@ -1,0 +1,59 @@
+<footer>
+  <div class="footer-widgets-area">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-3 col-sm-6">
+          <div class="widget nav-widget">
+            <h4 class="widget-title">Quick Links</h4>
+            <ul>
+              <li><a routerLink="/about-us">About Us</a></li>
+              <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+              <li><a routerLink="/terms-and-conditions">Terms & Conditions</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="widget nav-widget">
+            <h4 class="widget-title">Follow Us</h4>
+            <ul>
+              <li><a href="https://instagram.com/blogry_official?utm_medium=copy_link" target="_blank">Instagram</a></li>
+              <li><a href="https://m.facebook.com/pg/Blogry_official-105710738388823/posts/?ref=page_internal&mt_nav=0" target="_blank">Facebook</a></li>
+              <li><a href="https://www.pinterest.ph/blogrymarketing/pins/" target="_blank">Pinterest</a></li>
+              <li><a href="https://www.linkedin.com/posts/blogry-official_eranmoney-earnmoneyonlinewithoutinvestment-activity-6807643967115579392-BhBR" target="_blank">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="widget nav-widget">
+            <h4 class="widget-title">Support</h4>
+            <ul>
+              <!-- <li><a routerLink="/faq">FAQ</a></li> -->
+              <!-- <li><a routerLink="/help">Help Center</a></li> -->
+              <li><a routerLink="/contact-us">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 ml-auto">
+          <div class="widget newsletter-widget">
+            <h4 class="widget-title">Our Monthly Newsletter</h4>
+            <p>Sign Up TO Get Updates On Articles, Interviews And Events.</p>
+            <form [formGroup]="subscribeForm" (ngSubmit)="subscribeSubmit()">
+              <input type="email" formControlName="email" placeholder="your email" />
+              <button type="submit">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright-area">
+    <!-- <div class="container container-1360"> -->
+      <!-- <div class="row align-items-center text-center"> -->
+          <div class="copyright-text text-center">
+            <p><span>Copyright</span> - {{currentYear | date:'Y'}} Blogry</p>
+          </div>
+      <!-- </div> -->
+    <!-- </div> -->
+  </div>
+</footer>

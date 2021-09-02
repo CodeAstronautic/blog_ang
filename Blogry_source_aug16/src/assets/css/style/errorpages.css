@@ -1,0 +1,63 @@
+
+/*======= 404 Pages =======*/
+.error-section {
+    padding-top: 150px;
+    padding-bottom: 130px;
+}
+
+@media (max-width: 991px) {
+    .error-section {
+        padding-top: 110px;
+        padding-bottom: 90px;
+    }
+}
+
+@media (max-width: 767px) {
+    .error-section {
+        padding-top: 60px;
+        padding-bottom: 50px;
+    }
+}
+
+.error-text h1 {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 16px;
+}
+
+@media (max-width: 991px) {
+    .error-text h1 {
+        letter-spacing: 10px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    .error-text h1 {
+        letter-spacing: 5px;
+    }
+}
+
+.error-text h1 span {
+    display: block;
+    font-size: 250px;
+    letter-spacing: 10px;
+}
+
+@media (max-width: 991px) {
+    .error-text h1 span {
+        font-size: 200px;
+    }
+}
+
+@media (max-width: 767px) {
+    .error-text h1 span {
+        font-size: 180px;
+    }
+}
+
+@media (max-width: 575px) {
+    .error-text h1 span {
+        font-size: 120px;
+    }
+}

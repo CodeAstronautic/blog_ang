@@ -1,0 +1,160 @@
+.blogryModal {
+  max-width: auto;
+  margin: auto;
+  padding: 30px;
+  box-shadow: 0 6px 36px rgb(34 34 34 / 33%);
+  background: #fff;
+  border-radius: 24px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  box-shadow: none;
+  /* min-width: 350px; */
+  min-width: 60%;
+}
+.blogryModal::-webkit-scrollbar {
+  display: none;
+}
+.blogryModal button.close {
+  opacity: 1;
+  margin: 2px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.blogryModal button.close img {
+  max-height: 40px;
+  padding: 8px;
+  /* filter: invert(1); */
+}
+.blogryModal button.close:hover {
+  background: #000000bd;
+  border-radius: 50px;
+}
+.blogryModal button.close:hover img {
+  filter: invert(1);
+}
+/* .loginForm button {
+  border-radius: 20px;
+} */
+.blogryModal .form-group label {
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.blogryModal .form-group [type="email"],
+.blogryModal .form-group [type="text"],
+.blogryModal .form-group [type="password"],
+.blogryModal .form-group [type="tel"],
+.blogryModal .form-group [type="number"] {
+  transition: border 200ms ease-out, background 200ms ease-out;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #ffffff;
+  box-shadow: 0 1px 4px 0 rgb(34 34 34 / 10%) inset;
+  border-color: rgba(34, 34, 34, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  color: #222222;
+  font-size: 16px;
+  line-height: 28px;
+  height: 48px;
+  outline: none;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.blogryModal .form-group > input:focus {
+  border-color: #222222;
+}
+.blogryModalBody {
+  overflow-y: inherit;
+  overflow-x: hidden;
+  max-height: calc(65vh - 3.5rem);
+}
+
+.blogryModalBody .media img {
+  width: 60px;
+  height: 60px;
+}
+.blogComments .blogComment:not(:first-child) {
+  margin-top: 20px;
+}
+
+.blogComments .blogComment {
+  max-width: 98%;
+}
+
+/* commentform section */
+.commentForm {
+  position: relative;
+  margin-bottom: 20px;
+}
+.commentButton {
+  background: blue;
+  border-radius: 13px;
+  padding: 6px 25px;
+  color: #ffffff;
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  height: 35px;
+}
+.commentTextarea {
+  height: auto;
+  padding: 10px;
+  /* resize: vertical; */
+}
+
+.commentTextarea {
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 6px;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: none;
+  line-height: 20px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 5px rgb(0 0 0 / 20%);
+  transition: border 200ms ease-out, background 200ms ease-out;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  min-height: 79px;
+}
+
+.commentTextarea[contenteditable]:empty::before {
+  content: "Write comment";
+  color: gray;
+}
+.commentButton:hover {
+  background: #cecece;
+}
+.btn-black {
+  background-color: #101010;
+  color: #fff !important;
+  margin: 0 5px;
+}
+
+
+/* WriteBlogExtraInput Modal Fields */
+.extraWriteBlogInputsModal {
+  background-color: #ffffff !important;
+  opacity: 1;
+}
+ngb-modal-window.d-block.extraWriteBlogInputsModal.modal.fade.show {
+  background-color: #fff;
+  opacity: 1;
+}
+.extraWriteBlogInputsModalBackdrop {
+  background-color: #ffffff !important;
+  opacity: 1;
+}

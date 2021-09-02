@@ -1,0 +1,126 @@
+<section class="contact-section">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-12 mb-4">
+                <h2 class="text-center">How Can We Help You?</h2>
+            </div>
+            <div class="col-12" *ngIf="isMessageSubmittedSuccesfully">
+                <div class="contact-text">
+                    <div class="contact-form" style="max-width: 500px;margin:auto">
+                        <div class="border-success">
+                            <h1 class="display-4">Success</h1>
+                            <p class="lead">Thank You for contacting us.</p>
+                            <hr class="my-4">
+                            <p>We will get back to you within 24 to 48 hours.</p>
+                            <p class="lead">
+                              <a class="btn btn-primary btn-lg" routerLink="/" role="button">Go to Home</a>
+                            </p>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" *ngIf="!isMessageSubmittedSuccesfully">
+                <div class="contact-text">
+                    <div class="contact-form" style="max-width: 500px;margin:auto">
+                        <form [formGroup]="supportForm" (ngSubmit)="supportFormSubmit()">
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                    <label>FIRST NAME*</label>
+                                    <input type="text" formControlName="first_name" required>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label>LAST NAME*</label>
+                                    <input type="text" formControlName="last_name" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>EMAIL*</label>
+                                    <input type="email" formControlName="email" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>MOBILE NO*</label>
+                                    <input type="tel" formControlName="mobile" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>MESSAGE*</label>
+                                    <textarea formControlName="message" required></textarea>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn-block">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="popularQuestions">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-12 mb-4">
+                <h2>Popular Questions</h2>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="accordion" id="accordionExample" *ngIf="allFaqs && allFaqs.length > 0">
+
+                    <div class="card" *ngFor="let faq of allFaqs; let i = index">
+                        <div class="card-header" id="heading{{i}}">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" [attr.data-toggle]="'collapse'"
+                                [attr.data-target]="'#collapse'+i" [attr.aria-controls]="'#collapse'+i" [attr.aria-expanded]="true">
+                                    {{faq.question}}
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapse{{i}}" class="collapse" [attr.aria-labelledby]="'heading'+i" [attr.data-parent]="'#accordionExample'">
+                            <div class="card-body">
+                                {{faq.answer}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="supportBlogs" *ngIf="allBlogs && allBlogs.length > 0">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-12 mb-4">
+                <h2>Blogs</h2>
+            </div>
+            <div class="col-12 mb-4">
+                <section class="post-area no-sidebar mt-3">
+                    <div class="container">
+
+                        <div class="row relatedPosts">
+                            <div class="col-md-4 mb-4" *ngFor="let post of allBlogs; let i = index">
+                                <div class="card h-100 homeCard">
+                                    <img class="bd-placeholder-img card-img-top" [src]="getPostImage(post.blog.files)"
+                                        routerLink="/support/blog/{{post._id}}" style="cursor:pointer">
+                                    <button class="btn btn-sm knowMore" style="background-color: crimson;"
+                                        *ngIf="post.blog.category && post.blog.category.name">{{post.blog.category.name}}</button>
+                                    <div class="card-body pt-2">
+                                        <h5 class="card-title blogPostTitle" routerLink="/support/blog/{{post._id}}"
+                                            style="cursor:pointer">{{post.blog.title}}
+                                        </h5>
+                                        <div class="card-text postExcerpt"
+                                            [innerHtml]="blogService.stripHtml(post.blog.content)"></div>
+                                    </div>
+                                    <div class="card-footer">
+                                        {{post.blog.createdAt | date:"MMM d"}} | {{blogService.readingTime(post.blog.content)}}
+                                        min read <span class="float-right"><i class="fas fa-thumbs-up"></i> {{post &&
+                                            post.blog.like_count ? post.blog.like_count.length :
+                                            0}} | <i class="fas fa-bookmark"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>

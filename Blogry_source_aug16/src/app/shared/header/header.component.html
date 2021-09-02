@@ -1,0 +1,641 @@
+<!-- <header class=""> -->
+<header class="navbar navbar-expand-lg navbar-light bg-light sticky-header">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img
+        class="site-logo"
+        src="assets/img/logo.jpg"
+        height="30"
+        alt="Blogry"
+      />
+    </a>
+
+    <div class="collapse navbar-collapse nav-new" id="navbarSupportedContent">
+      <ul
+        class="navbar-nav ml-auto"
+        *ngIf="!supportCenter && !authService.isLoggedIn"
+      >
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/privacy-policy">Policies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/terms-and-conditions">Terms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about-us">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/support">Support</a>
+        </li>
+      </ul>
+
+      <form
+        class="form-inline my-2 my-lg-0 blogrySearchForm d-flex"
+        *ngIf="isDesktopDevice && !supportCenter && authService.isLoggedIn"
+        [formGroup]="searchForm"
+        (ngSubmit)="onSearchSubmit()"
+      >
+        <input
+          class="form-control mr-sm-2 mainSearch"
+          (onKeyDown)="onSearchSubmit()"
+          formControlName="keyword"
+          placeholder="Search on blogry"
+          aria-label="Search"
+        />
+        <button class="btn searchButton" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+      <ul class="navbar-nav ml-auto" *ngIf="supportCenter">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+      </ul>
+      <a
+        class="p-2 btn btn-dark btn-lg rounded-50 bg-black"
+        routerLink="/support"
+        style="min-width: 100px"
+        *ngIf="supportCenter"
+      >
+        <small><b>Support</b></small>
+      </a>
+
+      <nav
+        class="my-2 my-md-0 mr-md-3 d-flex new-data"
+        id="navbarSupportedContent"
+        style="height: 40px"
+        *ngIf="!supportCenter"
+      >
+        <a
+          class="p-2 btn btn-dark btn-lg rounded-50 bg-black"
+          #loginButton
+          id="loginButton"
+          style="min-width: 100px; line-height: 21px"
+          (click)="openModal(loginModal)"
+          *ngIf="!authService.loginStatus"
+        >
+          <small><b>Log-in</b></small>
+        </a>
+
+        <div
+          class="shoping-cart dropdown userNotifications"
+          *ngIf="authService.loginStatus"
+        >
+          <a
+            class="shoping-cart-btn dropdown-toggle"
+            type="button"
+            id="userNotificationPopup"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="fas fa-bell"></i>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-right userNotification"
+            aria-labelledby="userNotiiycationPopup"
+          >
+            <li class="dropdown-header">
+              <strong>Notifications</strong>
+              <a class="float-right" routerLink="/">View All</a>
+            </li>
+            <li class="dropdown-divider"></li>
+            <div class="noNotifications">
+              <h5>No updates</h5>
+              <p>
+                This is where you'll see updates on your favourite items and
+                shops, like sales, new products and more
+              </p>
+            </div>
+          </ul>
+        </div>
+
+        <div
+          class="shoping-cart dropdown float-right"
+          *ngIf="authService.loginStatus"
+        >
+          <a
+            class="shoping-cart-btn dropdown-toggle"
+            type="button"
+            id="usermenu"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img
+              [src]="userAvatar"
+              class="rounded-circle userMiniAvatar"
+              [alt]="userFullName | titlecase"
+            />
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-right userMenu"
+            aria-labelledby="usermenu"
+          >
+            <li class="dropdown-header">{{ userFullName | titlecase }}</li>
+            <li class="dropdown-divider"></li>
+            <li class="dropdown-item">
+              <a routerLink="/p/dashboard/write"
+                ><i class="fas fa-edit"></i> Write</a
+              >
+            </li>
+            <li class="dropdown-item">
+              <a routerLink="/p/dashboard/blogs"
+                ><i class="fas fa-file"></i> My Blogs</a
+              >
+            </li>
+            <li class="dropdown-item">
+              <a routerLink="/p/saved-blogs"
+                ><i class="fas fa-file-archive"></i> Saved Blogs</a
+              >
+            </li>
+            <li class="dropdown-item">
+              <a (click)="openModal(userInterest)"
+                ><i class="fas fa-plus-square"></i> Your Interests</a
+              >
+            </li>
+            <li class="dropdown-item">
+              <a routerLink="/p"><i class="fas fa-user"></i> Profile</a>
+            </li>
+            <li class="dropdown-divider"></li>
+            <li class="dropdown-item">
+              <a routerLink="/privacy-policy"
+                ><i class="fas fa-globe"></i> Policies</a
+              >
+            </li>
+            <li class="dropdown-item">
+              <a routerLink="/terms-and-conditions"
+                ><i class="fas fa-globe"></i> Terms</a
+              >
+            </li>
+            <li class="dropdown-item">
+              <a routerLink="/about-us"
+                ><i class="fas fa-globe"></i> About us</a
+              >
+            </li>
+            <li class="dropdown-item">
+              <a routerLink="/support"
+                ><i class="fas fa-life-ring"></i> Support</a
+              >
+            </li>
+
+            <li class="dropdown-divider"></li>
+            <li class="dropdown-item">
+              <a (click)="authService.userLogOut()"
+                ><i class="fas fa-sign-out"></i> Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <a
+          type="button"
+          id="workplaceButton"
+          routerLink="/p/dashboard"
+          *ngIf="authService.loginStatus"
+        >
+          <i class="fas fa-briefcase"></i>
+        </a>
+      </nav>
+      <div class="sidebar" *ngIf="showbar">
+        <li (click)="handlehideShow()"><i class="fas fa-times-circle"></i></li>
+        <a routerLink="/privacy-policy"
+          ><i class="fas fa-globe"></i> Policies</a
+        >
+        <a routerLink="/terms-and-conditions"
+          ><i class="fas fa-globe"></i> Terms</a
+        >
+        <a routerLink="/about-us"><i class="fas fa-globe"></i> About us</a>
+        <a routerLink="/support"><i class="fas fa-life-ring"></i> Support</a>
+        <a
+          class="p-2 btn btn-dark btn-lg rounded-50 bg-black"
+          #loginButton
+          id="loginButton"
+          style="min-width: 100px; line-height: 21px; color: #fff"
+          (click)="openModal(loginModal)"
+          *ngIf="!authService.loginStatus"
+        >
+          <small><b>Log-in</b></small>
+        </a>
+      </div>
+      <div class="menubar" (click)="handlehowHide()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <!-- <ul class="dropdown" *ngIf="showbar" style="margin-left: 300px !important; ">
+        <li (click)="handlehideShow()"><i class="fas fa-times-circle"></i></li>
+        <li>Policies</li>
+        <li>Terms</li>
+        <li>About Us</li>
+        <li>Support</li>
+        <li>Logout</li>
+        
+      </ul> -->
+    </div>
+  </div>
+</header>
+<!-- </header> -->
+
+<ng-template #loginModal let-modal>
+  <div class="blogryLoginModal">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <img src="../../../assets/img/defaults/close.png" />
+    </button>
+    <div class="loginContent">
+      <div class="loginForm">
+        <div class="pt-3 mb-3 text-center loginButtons">
+          <button
+            class="btn btn-dark bg-black mx-1 text-light"
+            (click)="openRegisterForm(false)"
+          >
+            Login
+          </button>
+          <button
+            class="btn btn-dark bg-black mx-1 text-light"
+            (click)="openRegisterForm(true)"
+          >
+            Join Blogry
+          </button>
+        </div>
+
+        <div autocomplete="off" id="userLoginForm" *ngIf="showLoginForm">
+          <form [formGroup]="signInForm" *ngIf="!showForgetPasswordForm">
+            <div class="form-group">
+              <label for="userName">Username / Phone Number / Email</label>
+              <input
+                formControlName="userName"
+                (change)="changeUserName($event)"
+                autocomplete="new-phone"
+                type="text"
+                class="form-control"
+                id="userName"
+                [ngClass]="{
+                  'is-invalid':
+                    signInForm.controls.userName.invalid &&
+                    (signInForm.controls.userName.dirty ||
+                      signInForm.controls.userName.touched)
+                }"
+              />
+            </div>
+            <label
+              class="text-danger text-center"
+              *ngIf="
+                signInForm.controls.userName.invalid &&
+                (signInForm.controls.userName.dirty ||
+                  signInForm.controls.userName.touched)
+              "
+            >
+              Field is required
+            </label>
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input
+                formControlName="loginPassword"
+                autocomplete="new-loginPassword"
+                type="password"
+                class="form-control"
+                id="loginPassword"
+                [ngClass]="{
+                  'is-invalid':
+                    signInForm.controls.loginPassword.invalid &&
+                    (signInForm.controls.loginPassword.dirty ||
+                      signInForm.controls.loginPassword.touched)
+                }"
+              />
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="loginErrorMessage"
+            >
+              <strong>Login Error:</strong> {{ loginErrorMessage }}
+            </div>
+            <div class="form-group">
+              <button
+                type="button"
+                class="btn btn-dark bg-black btn-block btn-lg loginButton"
+                (click)="onSubmitLogin()"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+          <form [formGroup]="forgetPasswordForm" *ngIf="showForgetPasswordForm">
+            <div class="form-group">
+              <label for="userName">Email</label>
+              <input
+                formControlName="email"
+                autocomplete="new-email"
+                type="email"
+                required
+                class="form-control"
+                id="userName"
+                [ngClass]="{
+                  'is-invalid':
+                    forgetPasswordForm.controls.email.invalid &&
+                    (forgetPasswordForm.controls.email.dirty ||
+                      forgetPasswordForm.controls.email.touched)
+                }"
+              />
+            </div>
+            <label
+              class="text-danger text-center"
+              *ngIf="
+                forgetPasswordForm.controls.email.invalid &&
+                (forgetPasswordForm.controls.email.dirty ||
+                  forgetPasswordForm.controls.email.touched)
+              "
+            >
+              Field is required
+            </label>
+            <div
+              class="alert alert-{{ forgetClass }} alert-dismissible fade show"
+              role="alert"
+              *ngIf="forgetResponse"
+            >
+              <strong
+                >{{
+                  forgetClass && forgetClass == "danger" ? "Error" : "Success"
+                }}:</strong
+              >
+              {{ forgetMessage }}
+            </div>
+            <div class="form-group">
+              <button
+                type="button"
+                class="btn btn-dark bg-black btn-block btn-lg loginButton"
+                (click)="onSubmitForget()"
+              >
+                Get Verfification Email
+              </button>
+            </div>
+          </form>
+
+          <div class="form-group text-center">
+            <span
+              class="underlineText"
+              style="cursor: pointer"
+              *ngIf="!showForgetPasswordForm"
+              (click)="showForgetPasswordForm = true"
+              ><small>Trouble signing in?</small></span
+            >
+            <span
+              class="underlineText"
+              style="cursor: pointer"
+              *ngIf="showForgetPasswordForm"
+              (click)="showForgetPasswordForm = false"
+              ><small>Back to login</small></span
+            >
+          </div>
+        </div>
+
+        <div
+          autocomplete="off"
+          id="userRegistrationForm"
+          *ngIf="!showLoginForm"
+          [formGroup]="registerForm"
+          (ngSubmit)="onSubmitRegister()"
+        >
+          <!-- <div class="pt-3 mb-3">
+            <span>
+              <h5>Create your account</h5>
+              <span>Registration is easy.</span>
+            </span>
+          </div> -->
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+            *ngIf="registerErrorMessage"
+          >
+            <strong>Registration Error:</strong> {{ registerErrorMessage }}
+          </div>
+          <div
+            class="alert alert-success alert-dismissible fade show"
+            role="alert"
+            *ngIf="registerSuccessMessage"
+          >
+            <strong>Success:</strong> {{ registerSuccessMessage }}
+          </div>
+          <div class="form-group">
+            <label for="newEmail">Fullname</label>
+            <input
+              formControlName="newName"
+              autocomplete="newName"
+              type="text"
+              class="form-control"
+              id="newName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="newEmail">Email address</label>
+            <input
+              formControlName="newEmail"
+              autocomplete="userEmail"
+              type="email"
+              class="form-control"
+              id="newEmail"
+            />
+          </div>
+          <div class="form-group">
+            <label for="userName">Username</label>
+            <input
+              formControlName="userName"
+              autocomplete="userName"
+              type="text"
+              class="form-control"
+              id="userName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input
+              formControlName="phoneNumber"
+              autocomplete="phoneNumber"
+              type="tel"
+              class="form-control"
+              id="phoneNumber"
+            />
+          </div>
+          <div class="form-group">
+            <label for="newPassword">Password</label>
+            <input
+              formControlName="newPassword"
+              autocomplete="userPassword"
+              type="password"
+              class="form-control"
+              id="newPassword"
+            />
+            <!-- <small>Show</small> -->
+          </div>
+
+          <div class="form-group">
+            <button
+              type="submit"
+              class="btn btn-dark btn-block btn-lg"
+              (click)="onSubmitRegister()"
+            >
+              Join
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div
+            class="
+              wt-mb-xs-4 wt-mt-xs-4 wt-bb-xs wt-text-center-xs
+              separator-flush-margins
+            "
+            style="line-height: 0"
+          >
+            <span
+              class="
+                wt-bg-white wt-p-xs-2 wt-vertical-align-bottom wt-text-gray
+              "
+              style="line-height: 0"
+            >
+              OR
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <button
+            class="btn btn-outline-dark btn-block btn-lg socialButton"
+            (click)="googleAuth()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              width="16px"
+              height="16px"
+              viewBox="0 0 16 16"
+              version="1.1"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <path
+                  d="M15.68,8.18181818 C15.68,7.61454546 15.6290909,7.06909091 15.5345454,6.54545454 L8,6.54545454 L8,9.64 L12.3054546,9.64 C12.12,10.64 11.5563636,11.4872727 10.7090909,12.0545454 L10.7090909,14.0618182 L13.2945454,14.0618182 C14.8072727,12.6690909 15.68,10.6181818 15.68,8.18181818 L15.68,8.18181818 Z"
+                  id="Shape"
+                  fill="#4285F4"
+                  fill-rule="nonzero"
+                ></path>
+                <path
+                  d="M8,16 C10.16,16 11.9709091,15.2836364 13.2945454,14.0618182 L10.7090909,12.0545454 C9.99272729,12.5345454 9.07636364,12.8181818 8,12.8181818 C5.91636364,12.8181818 4.15272727,11.4109091 3.52363636,9.52 L0.850909091,9.52 L0.850909091,11.5927273 C2.16727273,14.2072727 4.87272727,16 8,16 L8,16 Z"
+                  id="Shape"
+                  fill="#34A853"
+                  fill-rule="nonzero"
+                ></path>
+                <path
+                  d="M3.52363636,9.52 C3.36363636,9.04 3.27272727,8.52727273 3.27272727,8 C3.27272727,7.47272727 3.36363636,6.96 3.52363636,6.48 L3.52363636,4.40727273 L0.850909091,4.40727273 C0.309090909,5.48727273 0,6.70909091 0,8 C0,9.29090907 0.309090909,10.5127273 0.850909091,11.5927273 L3.52363636,9.52 L3.52363636,9.52 Z"
+                  id="Shape"
+                  fill="#FBBC05"
+                  fill-rule="nonzero"
+                ></path>
+                <path
+                  d="M8,3.18181818 C9.17454542,3.18181818 10.2290909,3.58545454 11.0581818,4.37818182 L13.3527273,2.08363636 C11.9672727,0.792727273 10.1563636,0 8,0 C4.87272727,0 2.16727273,1.79272727 0.850909091,4.40727273 L3.52363636,6.48 C4.15272727,4.58909091 5.91636364,3.18181818 8,3.18181818 L8,3.18181818 Z"
+                  id="Shape"
+                  fill="#EA4335"
+                  fill-rule="nonzero"
+                ></path>
+                <polygon id="Shape" points="0 0 16 0 16 16 0 16"></polygon>
+              </g>
+            </svg>
+            Continue with Google
+          </button>
+        </div>
+        <div class="form-group">
+          <button
+            class="btn btn-outline-dark btn-block btn-lg socialButton"
+            (click)="faceBookAuth()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              width="16px"
+              height="16px"
+              viewBox="0 0 16 16"
+              version="1.1"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M15.0784247,15.9571892 C15.5636139,15.9571892 15.9570656,15.5637375 15.9570656,15.0784247 L15.9570656,0.915027027 C15.9570656,0.42965251 15.5636757,0.0363243243 15.0784247,0.0363243243 L0.915027027,0.0363243243 C0.42965251,0.0363243243 0.0363243243,0.42965251 0.0363243243,0.915027027 L0.0363243243,15.0784247 C0.0363243243,15.5636757 0.429590734,15.9571892 0.915027027,15.9571892 L15.0784247,15.9571892 Z"
+                id="Blue_1_"
+                fill="#3C5A99"
+              ></path>
+              <path
+                d="M11.0214054,15.9571892 L11.0214054,9.7917529 L13.0908417,9.7917529 L13.4007104,7.38897297 L11.0214054,7.38897297 L11.0214054,5.85494981 C11.0214054,5.15928958 11.2145792,4.68522008 12.212139,4.68522008 L13.4844788,4.68466409 L13.4844788,2.53559846 C13.2644324,2.5063166 12.5091583,2.44089575 11.6304556,2.44089575 C9.79601544,2.44089575 8.54010811,3.56064865 8.54010811,5.61698842 L8.54010811,7.38897297 L6.46535907,7.38897297 L6.46535907,9.7917529 L8.54010811,9.7917529 L8.54010811,15.9571892 L11.0214054,15.9571892 Z"
+                id="f"
+                fill="#FFFFFF"
+              ></path>
+            </svg>
+            Continue with Facebook
+          </button>
+        </div>
+        <div class="form-group">
+          <small>
+            By clicking Sign in or Continue with Google, or Facebook, you agree
+            to Blogry's
+            <span
+              class="underlineText cursorPointer"
+              routerLink="/terms-and-conditions"
+              >Terms of Use</span
+            >
+            and
+            <span
+              class="underlineText cursorPointer"
+              routerLink="/privacy-policy"
+              >Privacy Policy</span
+            >
+            Blogry may send you communications; you may change your preferences
+            in your account settings. We'll never post without your permission.
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #userInterest let-modal>
+  <div class="blogryModal modal-body" style="width: inherit">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <img src="../../../assets/img/defaults/close.png" />
+    </button>
+    <div class="row">
+      <h3 class="text-center mb-3" style="font-weight: 300">Your Interests</h3>
+    </div>
+    <div class="blogryModalBody userInterestsBody">
+      <div class="row d-flex">
+        <div class="col categoriesList">
+          <div
+            class="form-check categorySingle"
+            *ngFor="let category of allCategories; let i = index"
+            [ngClass]="{
+              selected: selectedCategoriesList.includes(category.name, 0)
+            }"
+          >
+            <input
+              type="checkbox"
+              (change)="selectCategory(i, category._id)"
+              id="checkbox{{ i }}"
+              class="form-check-input"
+            />
+            <i class="fas fa-check" *ngIf="ifSelected(category._id)"></i>
+            <label class="form-check-label" for="checkbox{{ i }}">
+              {{ category.name }}</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

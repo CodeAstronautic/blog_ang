@@ -1,0 +1,41 @@
+
+/*======= Footer =======*/
+footer {
+  background-color: #000000;
+  color: #bebebe;
+}
+
+
+footer .footer-copyright-area {
+  padding: 25px 0;
+  /* border-top: 1px solid #e5e5e5; */
+  position: relative;
+  z-index: 1;
+  color: #bebebe;
+}
+
+@media (max-width: 991px) {
+  footer .footer-copyright-area {
+      text-align: center;
+      padding: 13px 0;
+  }
+}
+
+@media (max-width: 991px) {
+  footer .footer-copyright-area::after {
+      display: none;
+  }
+}
+
+footer .footer-copyright-area .copyright-text {
+  font-size: 14px;
+  color: #bebebe;
+}
+
+footer .footer-copyright-area .copyright-text span {
+  font-weight: 700;
+  color: #bebebe;
+}
+.minifooterText a {
+  color: #bebebe !important;
+}

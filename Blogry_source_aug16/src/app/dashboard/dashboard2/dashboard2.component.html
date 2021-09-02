@@ -1,0 +1,55 @@
+<div class="dashboard">
+    <div class="miniSidebar">
+        <div class="dashTopLogo">
+            <img src="../../../assets/img/logo2.png" routerLink="/" />
+        </div>
+        <div class="dashMenu">
+            <a class="navLink" routerLink="/p/dashboard" ngbTooltip="Workplace" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <!-- <i class="fas fa-suitcase"></i> -->
+                <span class="material-icons">
+                    work_outline
+                </span>
+            </a>
+            <a class="navLink" routerLink="/p/dashboard/one-page-website" placement="right" ngbTooltip="One Page Website" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <!-- <i class="fas fa-globe"></i><br> -->
+                <span class="material-icons">
+                    public
+                </span>
+            </a>
+            <a class="navLink" routerLink="/p/dashboard/blogry-ads" placement="right" ngbTooltip="Blogry Ads" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <!-- <i class="fa fa-bolt"></i> -->
+                <span class="material-icons">
+                    view_array
+                </span>
+            </a>
+            <a class="navLink" routerLink="/p/dashboard/earnings" placement="right" ngbTooltip="Earning" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <!-- <i class="fas fa-money"></i> -->
+                <span class="material-icons">
+                    paid
+                </span>
+            </a>
+            <a class="navLink" routerLink="/p/dashboard/google-ads" placement="right" ngbTooltip="Google Ads" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <!-- <i class="fa fa-google"></i> -->
+                <span class="material-icons">
+                    ads_click
+                </span>
+            </a>
+            <a class="navLink" routerLink="/p/dashboard/transactions" placement="right" ngbTooltip="Transactions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <!-- <i class="fas fa-exchange"></i> -->
+                <span class="material-icons">
+                    payments
+                </span>
+            </a>
+        </div>
+        <div class="dashSettings">
+            <a class="navLink" ngbTooltip="Home" routerLink="/">
+                <span class="material-icons">
+                    home
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="mainDiv">
+        <router-outlet></router-outlet>
+    </div>
+</div>

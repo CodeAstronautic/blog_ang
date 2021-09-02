@@ -1,0 +1,58 @@
+<div class="modal fade login-wrapper" id="loginModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="login-box">
+        <div class="form-title">
+          <h3>Login</h3>
+          <p>I'm an existing user and would like to login.</p>
+        </div>
+        <form class="login-form" [formGroup]="loginFormPassword" (ngSubmit)="otpLogin()">
+          <p *ngIf="!authService.isValidEmailandOtpRerurn">
+            <label for="username">Email<span class="required">*</span></label>
+            <input type="email" formControlName="email" id="username" required>
+          </p>
+          <p *ngIf="authService.isValidEmailandOtpRerurn">
+            <label for="otp">OTP<span class="required">*</span></label>
+            <input type="number" formControlName="otp" id="otp" maxlength="4" minlength="4" required>
+          </p>
+          <!-- <p>
+                        <label for="password">Password<span class="required">*</span></label>
+                        <input type="password" formControlName="password" id="password">
+                    </p> -->
+          <!-- <p class="d-flex justify-content-between">
+            <span class="form-remember">
+              <input type="checkbox" (change)="changeLogin('email')">
+              <label for="rememberme">Otp Login / Password Login</label>
+            </span>
+            <span>
+              <a href="#regModal" data-dismiss="modal" (click)="registerModal.click">Don't have account! Register
+                new!</a>
+              <a href="#regModal" #registerModal data-toggle="modal" data-target="#regModal"></a>
+            </span>
+          </p> -->
+          <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">
+            <strong>Error!</strong> {{errorMessage}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <p class="text-center">
+            <button type="submit" class="form-btn">
+
+              <span *ngIf="loginButtonLoaders.signin"><i class="fas fa-spinner fa-spin"></i> Processing</span>
+              <span *ngIf="!loginButtonLoaders.signin">{{authService.loginButtonText}}</span>
+            </button>
+          </p>
+          <p class="text-center">
+            <span hidden id="my-signin2"></span>
+            <button type="button" class="form-btn" (click)="signWithGoogle()">
+              <span *ngIf="loginButtonLoaders.google"><i class="fas fa-spinner fa-spin"></i> Processing</span>
+              <span *ngIf="!loginButtonLoaders.google">Google Login</span>
+            </button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

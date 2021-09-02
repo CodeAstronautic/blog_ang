@@ -1,0 +1,86 @@
+<div class="container pt-4 pb-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="row p-3">
+        <div style="max-width: 400px;">
+          <p style="font-size: 2.5rem;line-height: 1;font-weight: 300;">Monitor your blogs</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 col-12">
+      <div class="row text-white">
+
+        <div class="col-md-4 col-sm-12" style="margin-bottom: 10px;">
+          <div class="card card1">
+            <div class="card-body">
+              <span class="card-top">Earnings <span class="card-icon"><i class="fas fa-money-check"></i></span></span>
+              <span class="card-bottom"><span class="card-number">{{totalEarnings}} &#8377;</span> total</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12" style="margin-bottom: 10px;">
+          <div class="card card2">
+            <div class="card-body">
+              <span class="card-top">Likes <span class="card-icon"><i class="fas fa-thumbs-up"></i></span></span>
+              <span class="card-bottom"><span class="card-number">{{totalLikes}}</span> liked blogs</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12" style="margin-bottom: 10px;">
+          <div class="card card3">
+            <div class="card-body">
+              <span class="card-top">Saves <span class="card-icon"><i class="fas fa-bookmark"></i></span></span>
+              <span class="card-bottom"><span class="card-number">{{totalSaves}}</span> saved blogs</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row pt-4" style="padding: 16px;">
+        <div class="dashboardTable">
+          <mat-paginator [pageSizeOptions]="[5, 10, 20, 35, 50]" showFirstLastButtons>
+            <h2><b>My Posts</b></h2>
+          </mat-paginator>
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="files">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element" class="dashTableImage"
+                [ngStyle]="{'background-image': 'url(' + getPostImage(element.files) + ')'}"></td>
+            </ng-container>
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element" class="dashTableText">
+                {{element.title}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDataToSidebar(row)"></tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-4 col-12 px-5">
+      <div class="row dashCurrentPost">
+        <div class="currentPostBgImage"
+          [ngStyle]="{'background-image': 'url(' + getPostImage(currentPostData && currentPostData.files ? currentPostData.files : '') + ')'}">
+        </div>
+        <ng-container *ngIf="currentPostData; else noCurrentPostSelected">
+          <div class="listItems">
+            <div class="listItem title">{{currentPostData.title}}</div>
+            <div class="listItem item"><b>Category:- </b> <span>{{currentPostData.category &&
+                currentPostData.category.name ? currentPostData.category.name : ''}}</span></div>
+            <div class="listItem item"><b>Earnings:- </b> <span>{{currentPostData.earning}}</span></div>
+            <div class="listItem item"><b>Likes:- </b> <span>{{currentPostData.like_count.length}}</span></div>
+            <div class="listItem item"><b>Saves:- </b> <span>{{currentPostData.save_count.length}}</span></div>
+            <div class="listItem item"><b>Share:- </b> <span>{{currentPostData.share_count}}</span></div>
+            <div class="listItem item"><b>Date:- </b> <span>{{currentPostData.createdAt | date:"mediumDate"}}</span>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noCurrentPostSelected>
+          <h2 class="noPostTutorial">Select your post from my posts table to preview your post status.</h2>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,195 @@
+
+/*======= Sidebar =======*/
+.primary-sidebar {
+    padding-top: 70px;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+.primary-sidebar::after {
+    position: absolute;
+    left: -75px;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    content: "";
+    background-color: #e5e5e5;
+}
+
+@media (max-width: 1400px) {
+    .primary-sidebar::after {
+        left: -50px;
+    }
+}
+
+@media (max-width: 991px) {
+    .primary-sidebar::after {
+        left: -15px;
+        right: -15px;
+        height: 1px;
+        top: 0;
+        width: auto;
+    }
+}
+
+.primary-sidebar .widget:not(:last-child) {
+    margin-bottom: 90px;
+}
+
+@media (max-width: 991px) {
+    .primary-sidebar .widget:not(:last-child) {
+        margin-bottom: 50px;
+    }
+}
+
+.primary-sidebar .widget .widget-title {
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 800;
+    position: relative;
+}
+
+.primary-sidebar .widget .widget-title::before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #494949;
+    height: 4px;
+    width: 20px;
+    border-radius: 2px;
+    content: "";
+}
+
+.primary-sidebar .widget.author-widget {
+    text-align: center;
+}
+
+.primary-sidebar .widget.author-widget .widget-title {
+    padding-bottom: 0;
+}
+
+.primary-sidebar .widget.author-widget .widget-title::before {
+    display: none;
+}
+
+.primary-sidebar .widget.author-widget .author-img {
+    margin-bottom: 30px;
+    border-radius: 50%;
+}
+
+.primary-sidebar .widget.author-widget .author-img img {
+    width: 140px;
+    height: 140px;
+    margin: auto;
+}
+
+.primary-sidebar .widget.author-widget .author-signature {
+    margin-top: 30px;
+}
+
+.primary-sidebar .widget.categories-widget .categories {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 20px 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.primary-sidebar .widget.categories-widget .categories .categorie {
+    width: 100%;
+    height: 120px;
+    position: relative;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+}
+
+.primary-sidebar .widget.categories-widget .categories .categorie::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.6;
+    content: "";
+    background-image: url(../../img/sidebar/overly.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.primary-sidebar .widget.categories-widget .categories .categorie a {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 20px 10px;
+}
+
+.primary-sidebar .widget.social-widget .social-links {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: -3px;
+}
+
+.primary-sidebar .widget.social-widget .social-links a {
+    font-size: 12px;
+    color: #333333;
+    line-height: 1;
+    padding: 10px 13px;
+    background-color: #f5f5f5;
+    margin: 3px;
+}
+
+.primary-sidebar .widget.social-widget .social-links a i {
+    margin-right: 5px;
+}
+
+.primary-sidebar .widget.social-widget .social-links a:hover {
+    background-color: #000000;
+    color: #fff;
+}
+
+.primary-sidebar .widget.popular-articles .article {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 90px 20px 1fr;
+    grid-template-columns: 90px 1fr;
+    grid-gap: 20px;
+}
+
+.primary-sidebar .widget.popular-articles .article .desc h6 {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+    .primary-sidebar .widget.popular-articles .article .desc h6 {
+        font-size: 14px;
+    }
+}
+
+.primary-sidebar .widget.popular-articles .article .desc .post-date {
+    font-size: 13px;
+    color: #3d3d3d;
+    line-height: 1;
+}
+
+.primary-sidebar .widget.popular-articles .article:not(:last-child) {
+    margin-bottom: 40px;
+}

@@ -1,0 +1,78 @@
+/*======= Contact =======*/
+.contact-section {
+  padding-top: 50px;
+  padding-bottom: 60px;
+  background-color: #f7f8fc;
+}
+
+@media (max-width: 991px) {
+  .contact-section {
+    padding-top: 80px;
+    padding-bottom: 90px;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-section {
+    padding-top: 50px;
+    padding-bottom: 60px;
+  }
+}
+
+.contact-text .title {
+  font-size: 50px;
+  font-weight: 400;
+}
+
+.contact-text p {
+  font-size: 20px;
+  padding-top: 5px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 1199px) {
+  .contact-text .title {
+    font-size: 40px;
+  }
+}
+
+.contact-text .infomations .title {
+  margin-top: 27px;
+  margin-bottom: 5px;
+  font-size: 32px;
+}
+
+.contact-text .infomations p {
+  font-size: 20px;
+}
+
+.contact-form {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+}
+
+.contact-form form button,
+.contact-form form input,
+.contact-form form textarea {
+  border-radius: 5px;
+}
+
+.contact-form form button {
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #000000;
+  color: #fff;
+  line-height: 1;
+  text-transform: uppercase;
+  padding: 15px 50px;
+  border: 1px solid #000000;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+}
+
+.contact-form form button:hover {
+  background-color: #fff;
+  color: #000000;
+}

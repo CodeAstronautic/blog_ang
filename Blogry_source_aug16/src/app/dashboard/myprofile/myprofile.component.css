@@ -1,0 +1,30 @@
+.myprofilesection .userField {
+  font-weight: 300;
+}
+.myprofilesection div {
+  padding-bottom: 15px;
+}
+.userCate span:not(:last-child)::after {
+  content: ",";
+}
+.fa-edit,
+.fa-save {
+  cursor: pointer;
+}
+
+textarea.myProfileBioInput {
+  height: auto;
+}
+.userAvatarDiv i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: xxx-large;
+  opacity: 0.6;
+  cursor: pointer;
+  color: navy;
+}
+.userAvatarDiv img {
+  max-height: 220px;
+}

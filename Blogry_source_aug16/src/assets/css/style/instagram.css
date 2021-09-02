@@ -1,0 +1,91 @@
+
+/*======= Instagram Section =======*/
+.instagram-section {
+    padding-top: 110px;
+}
+
+.instagram-section.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+@media (max-width: 991px) {
+    .instagram-section {
+        padding-top: 90px;
+    }
+}
+
+.instagram-section .instagram-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+    text-decoration: underline;
+    line-height: 1;
+    margin-bottom: 45px;
+}
+
+@media (max-width: 575px) {
+    .instagram-section .instagram-title {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+}
+
+.instagram-section .instagram-title .instagram-icon {
+    padding: 5px;
+    background-color: #000000;
+    border-radius: 50%;
+    color: #fff;
+    margin: 0 15px;
+    height: 22px;
+    width: 22px;
+    font-size: 13px;
+}
+
+.instagram-section .instagram-images .image {
+    position: relative;
+    z-index: 1;
+}
+
+.instagram-section .instagram-images .image .instagram-link {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #fff;
+    z-index: 3;
+    font-size: 26px;
+    line-height: 1;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.instagram-section .instagram-images .image::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    content: "";
+    background-color: #000000;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.instagram-section .instagram-images .image:hover .instagram-link {
+    visibility: visible;
+    opacity: 1;
+}
+
+.instagram-section .instagram-images .image:hover::before {
+    visibility: visible;
+    opacity: 0.6;
+}

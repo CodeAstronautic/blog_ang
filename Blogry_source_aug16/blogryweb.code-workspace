@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "./"
+		},
+		{
+			"path": "../Template"
+		},
+		{
+			"path": "../../../BrTechGeeks/Blogry/NodeBackend/blogry_now"
+		}
+	],
+	"settings": {}
+}

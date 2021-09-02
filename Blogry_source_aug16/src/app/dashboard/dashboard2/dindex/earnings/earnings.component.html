@@ -1,0 +1,209 @@
+
+    <div class="container pt-4 pb-4">
+
+      <div class="row">
+        <div class="col-12">
+          <div class="row p-3">
+            <div style="max-width: 400px;">
+              <p style="font-size: 2.5rem;line-height: 1;font-weight: 300;">Wallet</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+          <div class="card">
+            <h5 class="card-header">Wallet / Earnings
+              <button (click)="showWithdrawForm()" class="btn btn-primary btn-sm float-right"
+                *ngIf="!showWithDrawForm">Withdraw</button>
+            </h5>
+            <div class="card-body">
+              <h1 class="display-4">&#8377; {{myWallet && myWallet.amount ? myWallet.amount : 0}}</h1>
+              <!-- <a href="#" class="btn btn-primary float-right d-inline">Withdraw</a> -->
+              <form *ngIf="showWithDrawForm" [formGroup]="withdrawForm">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="amount" placeholder="amount to withdrawl" max="{{myWallet && myWallet.amount ? myWallet.amount : 0}}"
+                    [ngClass]="{'is-invalid': withdrawForm.controls.amount.invalid && (withdrawForm.controls.amount.dirty || withdrawForm.controls.amount.touched)}">
+                  <div
+                    *ngIf="withdrawForm.controls.amount.invalid && (withdrawForm.controls.amount.dirty || withdrawForm.controls.amount.touched)">
+                    <small class="form-text text-danger" *ngIf="withdrawForm.controls.amount.errors.required">
+                      Amount is required
+                    </small>
+                    <small class="form-text text-danger" *ngIf="withdrawMinError">
+                      Amount request must be &#8377; 5000
+                    </small>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <select class="form-control" formControlName="method"
+                    [ngClass]="{'is-invalid': withdrawForm.controls.method.invalid && (withdrawForm.controls.method.dirty || withdrawForm.controls.method.touched)}">
+                    <option value="">Withdrawl Method</option>
+                    <option value="bank">Bank</option>
+                    <option value="upi">UPI</option>
+                  </select>
+                  <small class="form-text text-danger"
+                    *ngIf="withdrawForm.controls.method.invalid && (withdrawForm.controls.method.dirty || withdrawForm.controls.method.touched)">
+                    Method is required
+                  </small>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm mt-3 mr-3" (click)="onSubmitWithdraw()"
+                  [disabled]="!withdrawForm.valid">Request</button>
+                <button class="btn btn-danger btn-sm mt-3" (click)="closeWithdrawForm()">Cancel</button>
+              </form>
+            </div>
+            <!-- <div class="card-footer text-right">
+              <a href="#" class="btn btn-primary">Withdraw</a>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+          <div class="card">
+            <h5 class="card-header">
+              Methods
+            </h5>
+            <div class="card-body">
+              <h6 class="card-title">Bank <i (click)="showBankForm()" *ngIf="bankDetailsAvailable"
+                  class="fas fa-edit"></i></h6>
+              <form *ngIf="bankEdit" [formGroup]="bankForm">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="account_holder_name"
+                    placeholder="Your Name on bank"
+                    [ngClass]="{'is-invalid': bankForm.controls.account_holder_name.invalid && (bankForm.controls.account_holder_name.dirty || bankForm.controls.account_holder_name.touched)}">
+                  <small class="form-text text-danger"
+                    *ngIf="bankForm.controls.account_holder_name.invalid && (bankForm.controls.account_holder_name.dirty || bankForm.controls.account_holder_name.touched)">
+                    Customer name is required
+                  </small>
+                </div>
+                <div class="form-group">
+                  <!-- <input type="text" class="form-control" placeholder="Bank"> -->
+                  <select class="form-control" formControlName="name"
+                    [ngClass]="{'is-invalid': bankForm.controls.name.invalid && (bankForm.controls.name.dirty || bankForm.controls.name.touched)}">
+                    <option value="">Bank</option>
+                    <option *ngFor="let bank of banksList" [value]="bank">{{bank}}</option>
+                  </select>
+                  <small class="form-text text-danger"
+                    *ngIf="bankForm.controls.name.invalid && (bankForm.controls.name.dirty || bankForm.controls.name.touched)">
+                    Bank is required
+                  </small>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="account_branch" placeholder="Bank Branch"
+                    [ngClass]="{'is-invalid': bankForm.controls.account_branch.invalid && (bankForm.controls.account_branch.dirty || bankForm.controls.account_branch.touched)}">
+                  <small class="form-text text-danger"
+                    *ngIf="bankForm.controls.account_branch.invalid && (bankForm.controls.account_branch.dirty || bankForm.controls.account_branch.touched)">
+                    Branch is required
+                  </small>
+                </div>
+                <div class="form-group">
+                  <input type="number" class="form-control" formControlName="account_number" placeholder="ACC Number"
+                    minlength="9" maxlength="18"
+                    [ngClass]="{'is-invalid': bankForm.controls.account_number.invalid && (bankForm.controls.account_number.dirty || bankForm.controls.account_number.touched)}">
+                  <small class="form-text text-danger"
+                    *ngIf="bankForm.controls.account_number.invalid && (bankForm.controls.account_number.dirty || bankForm.controls.account_number.touched)">
+                    Account number is required
+                  </small>
+                  <small class="form-text text-danger"
+                    *ngIf="bankForm.controls.account_number.invalid && (bankForm.controls.account_number.dirty || bankForm.controls.account_number.touched)">
+                    Account number min length is 9
+                  </small>
+                  <small class="form-text text-danger"
+                    *ngIf="bankForm.controls.account_number.invalid && (bankForm.controls.account_number.dirty || bankForm.controls.account_number.touched)">
+                    Account number max length is 18
+                  </small>
+                </div>
+                <div class="form-group">
+                  <input type="number" class="form-control" formControlName="account_number_confirm"
+                    placeholder="Confirm ACC Number" minlength="9" maxlength="18"
+                    [ngClass]="{'is-invalid': bankForm.controls.account_number_confirm.invalid && (bankForm.controls.account_number_confirm.dirty || bankForm.controls.account_number_confirm.touched)}">
+                  <div
+                    *ngIf="bankForm.controls.account_number_confirm.invalid && (bankForm.controls.account_number_confirm.dirty || bankForm.controls.account_number_confirm.touched)">
+                    <small class="form-text text-danger"
+                      *ngIf="bankForm.controls.account_number_confirm.errors.required">
+                      Confirmed account number is required
+                    </small>
+                    <small class="form-text text-danger"
+                      *ngIf="bankForm.controls.account_number_confirm.errors.minlength">
+                      Confirmed account number min length is 9
+                    </small>
+                    <small class="form-text text-danger"
+                      *ngIf="bankForm.controls.account_number_confirm.errors.maxlength">
+                      Confirmed account number max length is 18
+                    </small>
+                    <small class="form-text text-danger"
+                      *ngIf="bankForm.controls.account_number_confirm.errors.mustMatch">
+                      Account numbers not matched.
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="account_ifsc" placeholder="Bank IFSC"
+                    minlength="11"
+                    [ngClass]="{'is-invalid': bankForm.controls.account_ifsc.invalid && (bankForm.controls.account_ifsc.dirty || bankForm.controls.account_ifsc.touched)}">
+                  <small class="form-text text-danger"
+                    *ngIf="bankForm.controls.account_ifsc.invalid && (bankForm.controls.account_ifsc.dirty || bankForm.controls.account_ifsc.touched)">
+                    IFSC is required
+                  </small>
+                  <small class="form-text text-danger"
+                    *ngIf="bankForm.controls.account_ifsc.invalid && (bankForm.controls.account_ifsc.dirty || bankForm.controls.account_ifsc.touched)">
+                    IFSC is minimum 11 characters.
+                  </small>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm mr-3" (click)="onSubmitBank()"
+                  [disabled]="!bankForm.valid">Save Bank</button>
+                <button class="btn btn-danger btn-sm" (click)="closeBankForm()">Cancel</button>
+                <hr/>
+              </form>
+              <button (click)="showBankForm()" class="btn btn-primary btn-sm"
+                *ngIf="!bankDetailsAvailable && !bankEdit">Add Bank Details</button>
+              <hr *ngIf="!bankDetailsAvailable && !bankEdit"/>
+              <h6 class="card-title">UPI <i (click)="showUPIForm()" *ngIf="upiDetailsAvailable" class="fas fa-edit"></i>
+              </h6>
+              <div class="form-group" *ngIf="upiEdit" [formGroup]="upiForm">
+                <input type="text" class="form-control" formControlName="upi" placeholder="eg: upi@bank-name"
+                  [ngClass]="{'is-invalid': upiForm.controls.upi.invalid && (upiForm.controls.upi.dirty || upiForm.controls.upi.touched)}">
+                <small class="form-text text-danger"
+                  *ngIf="upiForm.controls.upi.invalid && (upiForm.controls.upi.dirty || upiForm.controls.upi.touched)">
+                  UPI is required
+                </small>
+                <button type="submit" class="btn btn-primary btn-sm mt-3 mr-3" (click)="onSubmitUpi()"
+                  [disabled]="!upiForm.valid">Save UPI</button>
+                <button class="btn btn-danger btn-sm mt-3" (click)="closeUPIForm()">Cancel</button>
+              </div>
+              <button (click)="showUPIForm()" class="btn btn-primary btn-sm"
+                *ngIf="!upiDetailsAvailable && !upiEdit">Add UPI ID</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Method</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Updates</th>
+                  <th scope="col">Requested</th>
+                  <th scope="col">Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let post of myWithdrawls">
+                  <td>&#8377; {{post.amount}}</td>
+                  <td>{{post.method | titlecase}}</td>
+                  <td>{{post.status | titlecase}}</td>
+                  <td>Updates</td>
+                  <td>{{post.createdAt | date:"mediumDate"}}</td>
+                  <td>{{post.updatedAt | date:"mediumDate"}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>

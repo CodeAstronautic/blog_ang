@@ -1,0 +1,113 @@
+
+.login-wrapper {
+    text-align: center;
+    padding: 120px 0;
+}
+
+.login-wrapper .form-title {
+    margin-bottom: 30px;
+}
+
+.login-wrapper .form-title h3 {
+    font-weight: 400;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.login-wrapper .login-box {
+    padding: 90px 80px;
+    border: 1px solid #f1f1f1;
+}
+
+@media (max-width: 575px) {
+    .login-wrapper .login-box {
+        padding: 60px 20px;
+    }
+}
+
+.login-wrapper .reg-box {
+    height: 100%;
+    padding: 90px 80px;
+    background-color: #fbfbfb;
+    border: 1px solid #f1f1f1;
+    border-left: none;
+}
+
+@media (max-width: 991px) {
+    .login-wrapper .reg-box {
+        border-top: 0;
+        border-left: 1px solid #f1f1f1;
+    }
+}
+
+@media (max-width: 575px) {
+    .login-wrapper .reg-box {
+        padding: 60px 20px;
+    }
+}
+
+.login-wrapper label {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.login-wrapper input {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    height: 35px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.login-wrapper .form-remember {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.login-wrapper .form-remember input[type="checkbox"] {
+    height: 14px;
+    width: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.login-wrapper .form-remember label {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.login-wrapper a {
+    font-size: 14px;
+}
+
+.login-wrapper form p:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+.login-wrapper .form-btn {
+    height: 45px;
+    background: #000000;
+    border: 1px solid #000000;
+    color: #fff;
+    padding: 0 40px;
+    font-size: 14px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+
+.login-wrapper .form-btn:hover {
+    color: #000000;
+    background-color: #fff;
+}

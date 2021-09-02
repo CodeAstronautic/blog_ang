@@ -1,0 +1,80 @@
+<!--====== Post Details Start ======-->
+<section class="post-details-area">
+  <div class="container container-1000">
+    <div class="post-details" [formGroup]="profileForm">
+      <div class="entry-header">
+        <h2 class="title">My Profile</h2>
+        <hr />
+      </div>
+      <div class="entry-content myprofilesection">
+
+        <div class="row">
+          <div class="col-md-3"><h4>Avatar:</h4></div>
+          <div class="col-md-9 userAvatarDiv text-center">
+            <i class="fas fa-camera" (click)="avatarInput.click()"></i>
+            <img [src]="myAvatar || auth.defaultUserAvatar" [alt]="myName" (click)="avatarInput.click()" class="img-thumbnail rounded-circle">
+            <input type="file" (change)="onAvatarChange($event)" hidden #avatarInput>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <h4>Name: <i class="fas fa-edit" *ngIf="!editNameField" (click)="editName()"></i></h4>
+          </div>
+          <div class="col-md-9">
+            <h4 class="userField" *ngIf="!editNameField">{{ myName }}</h4>
+            <div class="form-group" *ngIf="editNameField">
+              <input class="mb-1" type="text" formControlName="name" [value]="myName">
+              <span class="reply-link" type="button" (click)="updateName()"><i class="fas fa-save"></i> Update</span>
+              <span class="ml-2 reply-link" type="button" (click)="cancelName()"><i class="fas fa-times-circle"></i> cancel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <h4>Password: <i class="fas fa-edit" *ngIf="!editPasswordField" (click)="editPasswordField = true"></i></h4>
+          </div>
+          <div class="col-md-9">
+            <h4 class="userField" *ngIf="!editPasswordField">********</h4>
+            <div class="form-group" *ngIf="editPasswordField">
+              <input class="mb-1" type="password" formControlName="password">
+              <span class="reply-link" type="button" (click)="updatePassword()"><i class="fas fa-save"></i> Update</span>
+              <span class="ml-2 reply-link" type="button" (click)="cancelPassword()"><i class="fas fa-times-circle"></i> cancel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3"><h4>Email:</h4></div>
+          <div class="col-md-9">
+            <h4 class="userField">{{ myEmail }}</h4>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3"><h4>Bio: <i class="fas fa-edit" *ngIf="!editBioField" (click)="editBio()"></i></h4></div>
+          <div class="col-md-9">
+            <h4 class="userField" *ngIf="!editBioField">{{ myBio }}</h4>
+            <div class="form-group" *ngIf="editBioField">
+              <textarea class="myProfileBioInput" type="text" formControlName="bio" rows="2">{{ myBio }}</textarea>
+              <span class="reply-link" type="button" (click)="updateBio()"><i class="fas fa-save"></i> Update</span>
+              <span class="ml-2 reply-link" type="button" (click)="cancelBio()"><i class="fas fa-times-circle"></i> cancel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3"><h4>Interests: <i class="fas fa-edit" routerLink="/choose-category"></i></h4></div>
+          <div class="col-md-9">
+            <h4 class="userField userCate">
+              <span *ngFor="let cate of myCategories">&nbsp;{{ cate }}</span>
+            </h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!--====== Post Details End ======-->

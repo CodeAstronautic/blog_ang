@@ -1,0 +1,40 @@
+<section class="post-area no-sidebar" id="postWarpperLoaded">
+  <div class="container">
+    <div class="post-area-inner">
+      <h2 class="checkout-title mb-4 text-center">Saved Blogs</h2>
+      <!-- Entry Post -->
+      <div class="row justify-content-center mt-4" *ngIf="myBlogs && myBlogs.length > 0; else noBlogs">
+
+        <div class="col-lg-4 col-sm-6 col-xs-12 mb-4" *ngFor="let post of myBlogs; let ind = index" id="post_{{ind+1}}">
+          <div class="card myBlog entry-post h-100" style="width: 100%;">
+            <img *ngIf="post.files" class="card-img-top" [src]="apiUrl+'images/blogs/'+post.files" [alt]="post.title" />
+            <img *ngIf="!post.files" class="card-img-top" [src]="defaultPostImage" [alt]="post.title" />
+            <div class="card-body">
+              <a routerLink="/blog/{{post._id}}">
+                <h5 class="mb-0">{{post.title}}</h5>
+              </a>
+            </div>
+            <div class="card-footer">
+              <span>{{post.createdAt | date:"MMM dd"}} . {{post.category.name}}</span>
+              <!-- <span class="float-right" style="cursor:pointer;">
+                <i class="fas fa-times" (click)="unsaveBlog(post._id)"></i>
+              </span> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <ng-template class="row justify-content-center mt-4" #noBlogs>
+        <div class="row justify-content-center mt-5">
+          <div class="col mb-4 text-center">
+            <h3 class="display1x">
+              You dont have any saved blogs yet.
+              <br />Read blogs <i routerLink="/" style="cursor:pointer;color:rgb(60, 15, 193);" class="fas fa-home"></i>
+            </h3>
+          </div>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</section>

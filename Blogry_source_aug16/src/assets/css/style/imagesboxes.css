@@ -1,0 +1,87 @@
+
+/*======= Image Boxes =======*/
+.image-boxes {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 90px 1fr 90px 1fr 90px 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 90px;
+}
+
+@media (max-width: 1600px) {
+    .image-boxes {
+        grid-gap: 40px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .image-boxes {
+        grid-gap: 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .image-boxes {
+        -ms-grid-columns: 1fr 30px 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.image-boxes .image-box {
+    width: 100%;
+    height: 170px;
+    background-color: #eaeae0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+}
+
+.image-boxes .image-box::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.102;
+    background-color: #000000;
+    z-index: -1;
+}
+
+.image-boxes .image-box a {
+    background-color: #fff;
+    color: #000000;
+    font-family: "Roboto Slab", serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    padding: 20px 35px;
+}
+
+@media (max-width: 1600px) {
+    .image-boxes .image-box a {
+        padding: 18px 30px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .image-boxes .image-box a {
+        padding: 15px 25px;
+        font-size: 14px;
+    }
+}
+
+.image-boxes .image-box a:hover {
+    background-color: #000000;
+    color: #fff;
+}

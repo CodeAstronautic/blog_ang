@@ -1,0 +1,25 @@
+<!--====== Post Area Start ======-->
+<section class="post-area no-sidebar" id="postWarpperLoaded">
+  <div class="container-fluid">
+    <div class="post-area-inner">
+      <!-- Entry Post -->
+      <div class="entry-header pb-4" style="border-bottom: 1px solid rgb(170, 170, 170);">
+        <button class="btn btn-primary float-right" (click)="saveUserCategories()" >Save</button>
+        <h1 class="title">Customize your interests</h1>
+      </div>
+      <ng-container *ngIf="all_categories.length > 0">
+        <div class="image-boxes pt-4">
+          <div class="image-box categorySelectBox" *ngFor="let category of all_categories; let i = index" (click)="selectCategory(i, category.name)" [style.background-color]="category.color_code || getRandomDifferent(colorCodes)">
+            <span class="selectedCategory" *ngIf="ifSelected(category.name)">
+              <svg class="svgIcon-use" width="21" height="21">
+                <path d="M5.5 7.854L3.379 9.975l5.82 5.82 8.675-8.675-2.121-2.121-6.554 6.553z" fill-rule="evenodd" fill="#ffffff"></path>
+              </svg>
+            </span>
+            <a href="javascript:void(0);">{{category.name}}</a>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
+<!--====== Post Area End ======-->

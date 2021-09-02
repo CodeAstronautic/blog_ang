@@ -1,0 +1,120 @@
+<section class="checkout-wrapper writeBlogWrapper" [formGroup]="blogPostForm">
+  <div class="container-fluid">
+    <div action="#" class="checkout-form">
+      <div class="row justify-content-md-center">
+        <div class="col-lg-8">
+          <h4 class="mb-3" style="text-align: center; font-size: xx-large; font-weight: 300;">
+            {{formTitle}}
+            <!-- <button type="button" class="btn btn-secondary btn-black float-right" (click)="formNextOption()">
+              Next
+            </button> -->
+          </h4>
+          <section id="extraFormInputs">
+            <div class="modal-body" [formGroup]="tagForm">
+              <div class="container-fluid">
+                <div class="row justify-content-center">
+                  <div class="col-md-6 col-xs-12">
+                    <label>Include a high-quality image in your story <br>to make it more inviting to readers.</label>
+      
+                    <div class="form-group">
+                      <img type="button"
+                        [src]="updateBlog ? imageUrl+updateBlogImage || '/assets/img/defaults/default_image_upload.png' : previewImage || '/assets/img/defaults/default_image_upload.png'"
+                        (click)="featured_image.click()" />
+      
+                      <div *ngIf="featuredImageError" class="is-invalid-text">{{featuredImageError}}</div>
+      
+                      <input type="file" id="featured_image" #featured_image (change)="onFileChange($event)" [required]="true"
+                        hidden>
+                    </div>
+      
+                  </div>
+                  <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                      <br /><br />
+                      <select formControlName="category" class="wide" [required]="true" id=writeBlogSelectCategory [ngClass]="{
+                        'is-invalid': tagForm.controls.category.invalid && (tagForm.controls.category.dirty || tagForm.controls.category.touched)
+                      }">
+                        <option value="">Select Category</option>
+                        <option *ngFor="let cat of blogCategories" [value]="cat._id">{{cat.name}}</option>
+                      </select>
+                    </div>
+      
+                    <div class="form-group">
+                      <label>Tags <small>(write and enter to add tags, or use + sign to add)</small></label>
+                      <ngx-input-tag (change)="tagsInputChange($event)" formControlName="tags">
+                      </ngx-input-tag>
+                    </div>
+            
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div class="form-group writeBlogTitle">
+            <input type="text" id="title" placeholder="Title ..." formControlName="title" [required]="true" [ngClass]="{
+              'is-invalid': blogPostForm.controls.title.invalid && (blogPostForm.controls.title.dirty || blogPostForm.controls.title.touched)
+            }">
+            <label for="title" class="is-invalid-text"
+              *ngIf="blogPostForm.controls.title.invalid && (blogPostForm.controls.title.dirty || blogPostForm.controls.title.touched)">
+              <small>Title is required</small>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="content" [ngClass]="{
+              'is-invalid-text': blogPostForm.controls.content.invalid && (blogPostForm.controls.content.dirty || blogPostForm.controls.content.touched)
+            }">Content *</label><br />
+            <label for="content" class="is-invalid-text"
+              *ngIf="blogPostForm.controls.content.invalid && (blogPostForm.controls.content.dirty || blogPostForm.controls.content.touched)">
+              <small>Post content is required</small>
+            </label>
+            <editor formControlName="content" [init]="{
+              id: 'content',
+              base_url: '/assets/tinymce',
+              suffix: '.min',
+              paste_data_images: true,
+              plugins: 'autoresize preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable charmap quickbars emoticons',
+              toolbar: 'undo redo | bold italic underline strikethrough | fontsizeselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview print | insertfile image media link anchor codesample | ltr rtl',
+              toolbar_sticky: false,
+              menubar: 'file edit view insert format tools table',
+              autosave_ask_before_unload: true,
+              autosave_interval: '5s',
+              autosave_prefix: '{path}{query}-{id}-',
+              autosave_restore_when_empty: false,
+              autosave_retention: '2m',
+              image_advtab: true,
+              quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+              toolbar_mode: 'wrap',
+              contextmenu: 'link image imagetools table',
+              branding: false,
+              height: '400'
+            }"></editor>
+
+          </div>
+          <div class="form-group" *ngIf="showError">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> {{showErrorMessage}}
+              <button type="button" class="close" (click)="closeError()" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <!-- <div class="form-group">
+            <button type="button" class="btn btn-secondary btn-black float-right" (click)="formNextOption()">
+              Next
+            </button>
+          </div> -->
+          <div class="form-group text-right formSubmitButtons">
+            <button type="button" [disabled]="!blogPostForm.valid && !tagForm.valid" (click)="onFormSubmit(true)"
+              class="btn btn-primary"><i class="fas fa-paper-plane"></i> {{updateBlog ? 'Update' :
+              'Publish'}}</button>
+            <button type="button" [disabled]="!blogPostForm.valid && !tagForm.valid" *ngIf="!updateBlog" class="btn btn-dark btn-black" (click)="onFormSubmit(false)">
+              <i class="fas fa-save"></i> Draft
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #extraFormInputs let-modal>
+  </ng-template>
+</section>

@@ -1,0 +1,10 @@
+.card.entry-post {
+  margin-bottom: 10px;
+}
+.myBlog .card-img-top {
+  height: 220px;
+  width: -webkit-fill-available;
+}
+.myBlog > .card-body{
+  padding-bottom: 2px;
+}
